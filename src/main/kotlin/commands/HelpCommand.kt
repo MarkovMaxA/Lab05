@@ -1,16 +1,15 @@
 package commands
 
-import movies.MovieManager
 
-class SaveCommand(private val mg: MovieManager): Command {
+class HelpCommand(private val commandManager: CommandManager): Command {
     /**
      * Get information about command abstract method
      *
      * @return information about command [String]
      * @author Markov Maxim 2023
      */
-    override fun getDescription() = "Command is saving collection of movies to csv file\n" +
-            "[Command]: save <FileName.csv>"
+    override fun getDescription() = "Command is printing commands description in console\n" +
+            "[Command]: help"
 
     /**
      * Get name of command abstract method
@@ -18,7 +17,7 @@ class SaveCommand(private val mg: MovieManager): Command {
      * @return name of command [String]
      * @author Markov Maxim 2023
      */
-    override fun getName() = "save"
+    override fun getName() =  "help"
 
     /**
      * Execute command abstract method.
@@ -28,9 +27,16 @@ class SaveCommand(private val mg: MovieManager): Command {
      * @author Markov Maxim 2023
      */
     override fun execute(vararg arguments: String?): Boolean {
-        // val writer = Files.newBufferedWriter(Paths.get(fileName))
+        val commands = commandManager.getCommands()
 
-        // val csvPrinter = CSVPrinter(writer, CSVFormat.DEFAULT)
+        if (arguments.isNotEmpty()) {
+            println("Usage of command help doesn't need any of arguments")
+            return false
+        }
+
+        for (command in commands.values) {
+            println(command.getName() + " - " + command.getDescription())
+        }
         return true
-   }
+    }
 }

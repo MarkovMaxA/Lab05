@@ -1,16 +1,17 @@
 package commands
 
-import movies.MovieManager
+import movies.*
+import java.util.*
 
-class SaveCommand(private val mg: MovieManager): Command {
+class DeleteCommand(private val movieManager: MovieManager): Command {
     /**
      * Get information about command abstract method
      *
      * @return information about command [String]
      * @author Markov Maxim 2023
      */
-    override fun getDescription() = "Command is saving collection of movies to csv file\n" +
-            "[Command]: save <FileName.csv>"
+    override fun getDescription() = "Command is deleting element from collection\n" +
+            "[Command]: update <id>"
 
     /**
      * Get name of command abstract method
@@ -18,7 +19,7 @@ class SaveCommand(private val mg: MovieManager): Command {
      * @return name of command [String]
      * @author Markov Maxim 2023
      */
-    override fun getName() = "save"
+    override fun getName() = "delete"
 
     /**
      * Execute command abstract method.
@@ -28,9 +29,11 @@ class SaveCommand(private val mg: MovieManager): Command {
      * @author Markov Maxim 2023
      */
     override fun execute(vararg arguments: String?): Boolean {
-        // val writer = Files.newBufferedWriter(Paths.get(fileName))
+        val scanner = Scanner(System.`in`)
+        print("Element id: ")
 
-        // val csvPrinter = CSVPrinter(writer, CSVFormat.DEFAULT)
-        return true
-   }
+        val id = scanner.nextLong()
+
+        return movieManager.removeElementById(id)
+    }
 }

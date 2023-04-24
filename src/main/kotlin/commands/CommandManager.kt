@@ -13,4 +13,16 @@ class CommandManager {
      * @author Markov Maxim 2023
      */
     fun getCommands() = commands.toMap()
+
+    /**
+     * add command to hashmap function
+     *
+     * @return true if command was added
+     * @author Markov Maxim 2023
+     */
+    fun addCommand(command: Command): Boolean {
+        commands[command.getName()] = command
+
+        return true
+    }
 }

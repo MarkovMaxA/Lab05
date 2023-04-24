@@ -1,6 +1,7 @@
 import commands.CommandManager
+import commands.HelpCommand
+import commands.SaveCommand
 import movies.*
-import java.util.function.Predicate
 
 /**
  * Collection handle function
@@ -19,6 +20,11 @@ fun main(args: Array<String>) {
     var g = arrayOf(String())
 
     val commandManager = CommandManager()
+
+    commandManager.addCommand(SaveCommand(mg))
+    commandManager.addCommand(HelpCommand(commandManager))
+
+    commandManager.getCommands()["help"]?.execute()
 
 }
 
