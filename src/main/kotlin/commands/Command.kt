@@ -10,7 +10,16 @@ interface Command {
      * @return information about command [String]
      * @author Markov Maxim 2023
      */
-    fun getInfo(): String
+    fun getDescription(): String
+
+    /**
+     * Get name of command abstract method
+     *
+     * @return name of command [String]
+     * @author Markov Maxim 2023
+     */
+    fun getName(): String
+
 
     /**
      * Execute command abstract method.
@@ -19,5 +28,5 @@ interface Command {
      * @return none
      * @author Markov Maxim 2023
      */
-    fun execute(vararg arguments: String?)
+    fun execute(vararg arguments: String?): Boolean
 }

@@ -9,9 +9,16 @@ class SaveCommand(private val mg: MovieManager): Command {
      * @return information about command [String]
      * @author Markov Maxim 2023
      */
-    override fun getInfo(): String {
-        return "Command is saving collection of movies to csv file\n [Command]: save <FileName.csv>\n"
-    }
+    override fun getDescription() = "Command is saving collection of movies to csv file\n" +
+            "[Command]: save <FileName.csv>"
+
+    /**
+     * Get name of command abstract method
+     *
+     * @return name of command [String]
+     * @author Markov Maxim 2023
+     */
+    override fun getName() = "save"
 
     /**
      * Execute command abstract method.
@@ -20,9 +27,10 @@ class SaveCommand(private val mg: MovieManager): Command {
      * @return none
      * @author Markov Maxim 2023
      */
-    override fun execute(vararg arguments: String?) {
+    override fun execute(vararg arguments: String?): Boolean {
         // val writer = Files.newBufferedWriter(Paths.get(fileName))
 
         // val csvPrinter = CSVPrinter(writer, CSVFormat.DEFAULT)
+        return true
    }
 }

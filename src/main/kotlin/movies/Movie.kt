@@ -6,7 +6,7 @@ import java.time.LocalDate
 /**
  * Person representation class
  */
-class Person(private val name: String, private val height: Float? = null,
+class Person(private val name: String, private val height: Int? = null,
              private val hairColor: Color? = null, private val nationality: Country? = null) {
     init {
         if (name.isEmpty())
@@ -48,7 +48,7 @@ class Person(private val name: String, private val height: Float? = null,
     fun getNationality() = this.nationality
 }
 
-class Coordinates(private val x: Double, private val y: Float) {
+class Coordinates(private val x: Float, private val y: Double) {
     init {
         if (x <= -513)
             throw InputException("X must be more than -513")
@@ -59,7 +59,7 @@ class Coordinates(private val x: Double, private val y: Float) {
     /**
      * X getter method
      *
-     * @return x coordinate [Double]
+     * @return x coordinate [Float]
      * @author Markov Maxim 2023
      */
     fun getX() = this.x
@@ -67,15 +67,20 @@ class Coordinates(private val x: Double, private val y: Float) {
     /**
      * Y getter method
      *
-     * @return y coordinate [Float]
+     * @return y coordinate [Double]
      * @author Markov Maxim 2023
      */
     fun getY() = this.y
+
+    override fun toString(): String {
+        return "X: $x Y: $y"
+    }
 }
 
 class Movie(private var name: String, private var coordinates: Coordinates,
-            private var oscarsCount: Int, private var length: Long,
-            private var genre: MovieGenre, private var mpaaRating: MpaaRating
+            private var oscarsCount: Long, private var length: Int,
+            private var genre: MovieGenre, private var mpaaRating: MpaaRating,
+            private var screenWriter: Person
 ) {
     private var id: Long = giveId()
     private var creationDate: LocalDate = LocalDate.now()
@@ -167,5 +172,22 @@ class Movie(private var name: String, private var coordinates: Coordinates,
      * @author Markov Maxim 2023
      */
     fun getCreationDate() = this.creationDate
+
+    override fun toString(): String {
+        return "ID: $id\nName: $name\nCoordinates: $coordinates\nCreation date: $creationDate\n" +
+                "Oscars count: $oscarsCount\nLenght: $length\n Genre: $genre\n Mpaa rating: $mpaaRating\n" +
+                "Screen writer: $screenWriter"
+    }
+
+    /**
+     * updates movie id
+     *
+     * @argument id movie id [Long]
+     * @return none.
+     * @author Markov Maxim 2023
+     */
+    fun updateId(id: Long) {
+        this.id = id
+    }
 }
 
