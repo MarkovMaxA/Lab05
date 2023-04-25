@@ -1,7 +1,6 @@
 package commands
 
 import movies.*
-import java.util.Scanner
 
 class RemoveLowerCommand(private val movieManager: MovieManager): Command {
     /**

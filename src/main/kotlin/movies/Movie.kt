@@ -11,7 +11,7 @@ class Person(private val name: String, private val height: Int,
     init {
         if (name.isEmpty())
             throw InputException("Name couldn't be zero length")
-        if (height != null && height <= 0)
+        if (height <= 0)
             throw InputException("Height couldn't be less than zero")
     }
 
@@ -46,6 +46,8 @@ class Person(private val name: String, private val height: Int,
      * @author Markov Maxim 2023
      */
     fun getNationality() = this.nationality
+
+    override fun toString(): String = "Name: $name Height: $height Hair Color: $hairColor Nationality: $nationality"
 }
 
 class Coordinates(private val x: Float, private val y: Double) {
