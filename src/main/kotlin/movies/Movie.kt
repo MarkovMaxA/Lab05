@@ -6,7 +6,7 @@ import java.time.LocalDate
 /**
  * Person representation class
  */
-class Person(private val name: String, private val height: Int? = null,
+class Person(private val name: String, private val height: Int,
              private val hairColor: Color? = null, private val nationality: Country? = null) {
     init {
         if (name.isEmpty())
@@ -156,6 +156,13 @@ class Movie(private var name: String, private var coordinates: Coordinates,
      * @author Markov Maxim 2023
      */
     fun getMpaaRating() = this.mpaaRating
+    /**
+     * Sreenwriter's name getter method
+     *
+     * @return movie id [Long]
+     * @author Berman Denis 2023
+     */
+    fun getScreenwriter() = this.screenWriter
 
     /**
      * Id getter method
