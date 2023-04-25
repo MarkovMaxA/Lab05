@@ -24,16 +24,19 @@ class UpdateCommand(private val movieManager: MovieManager): Command {
     /**
      * Execute command abstract method.
      *
-     * @param arguments if it is needed [String]
+     * @param argument if it is needed [String]
      * @return none
      * @author Markov Maxim 2023
      */
-    override fun execute(vararg arguments: String?): Boolean {
+    override fun execute(argument: String?): Boolean {
+        if (argument == null) {
+            println("Usage of this command doesn't need any of arguments")
+            return false
+        }
+
         val scanner = Scanner(System.`in`)
-        print("Element id: ")
 
-        val id = scanner.nextLong()
-
+        val id = argument.toLong()
         print("Input film name: ")
         val name = scanner.nextLine()
         print("Input coordinates: ")
@@ -59,7 +62,8 @@ class UpdateCommand(private val movieManager: MovieManager): Command {
         print("Nationality: ")
         val personNationality = Country.valueOf(scanner.nextLine())
 
-        return movieManager.updateElementById(id, Movie(name, Coordinates(xcoord, ycoord), oscarsCount, lenght, genre,
-            mpaaRating, Person(personName, personHeight, personColor, personNationality)))
+        if (movieManager.removeElementById(id)) movieManager.addMovie(Movie(name, Coordinates(xcoord, ycoord), oscarsCount, lenght, genre,
+            mpaaRating, Person(personName, personHeight, personColor, personNationality), id))
+        return false
     }
 }

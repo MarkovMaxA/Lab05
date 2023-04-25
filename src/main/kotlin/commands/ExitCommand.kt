@@ -2,7 +2,7 @@ package commands
 
 import kotlin.system.exitProcess
 
-class ExitCommand(private val commandManager: CommandManager): Command{
+class ExitCommand: Command{
     /**
      * Get information about command abstract method
      *
@@ -23,16 +23,17 @@ class ExitCommand(private val commandManager: CommandManager): Command{
     /**
      * Execute command abstract method.
      *
-     * @param arguments if it is needed [String]
+     * @param argument if it is needed [String]
      * @return none
      * @author Berman Denis 2023
      */
-    override fun execute(vararg arguments: String?): Boolean {
-        if (arguments.isNotEmpty()) {
+    override fun execute(argument: String?): Boolean {
+        if (argument != null) {
             println("Usage of this command doesn't need any of arguments")
             return false
         }
 
         exitProcess(0)
+        return true
     }
 }

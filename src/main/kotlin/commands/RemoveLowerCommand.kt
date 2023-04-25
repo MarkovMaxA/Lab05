@@ -24,36 +24,17 @@ class RemoveLowerCommand(private val movieManager: MovieManager): Command {
     /**
      * Execute command abstract method.
      *
-     * @param arguments if it is needed [String]
+     * @param argument if it is needed [String]
      * @return none
      * @author Berman Denis 2023
      */
-    override fun execute(vararg arguments: String?): Boolean {
-        val scanner = Scanner(System.`in`)
-        print("Input film name: ")
-        val name = scanner.nextLine()
-        print("Input coordinates: ")
-        print("X: ")
-        val xcoord = scanner.nextFloat()
-        print("Y: ")
-        val ycoord = scanner.nextDouble()
-        print("Oscars count: ")
-        val oscarsCount = scanner.nextLong()
-        print("Length: ")
-        val lenght = scanner.nextInt()
-        print("Genre: ")
-        val genre = MovieGenre.valueOf(scanner.nextLine())
-        print("Mpaa rating: ")
-        val mpaaRating = MpaaRating.valueOf(scanner.nextLine())
-        println("Person:")
-        print("Name: ")
-        val personName = scanner.nextLine()
-        print("Height: ")
-        val personHeight = scanner.nextInt()
-        print("Hair color: ")
-        val personColor = Color.valueOf(scanner.nextLine())
-        print("Nationality: ")
-        val personNationality = Country.valueOf(scanner.nextLine())
+    override fun execute(argument: String?): Boolean {
+        if (argument == null) {
+            println("Usage of this command doesn't need any of arguments")
+            return false
+        }
+
+        val oscarsCount = argument.toLong()
 
         val movies = movieManager.getMovieQueue()
         for (movie in movies){

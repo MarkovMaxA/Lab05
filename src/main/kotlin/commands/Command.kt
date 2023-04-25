@@ -24,9 +24,9 @@ interface Command {
     /**
      * Execute command abstract method.
      *
-     * @param arguments if it is needed [String]
+     * @param argument if it is needed [String]
      * @return none
      * @author Markov Maxim 2023
      */
-    fun execute(vararg arguments: String?): Boolean
+    fun execute(argument: String?): Boolean
 }

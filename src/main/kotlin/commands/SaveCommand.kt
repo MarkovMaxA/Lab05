@@ -23,11 +23,11 @@ class SaveCommand(private val mg: MovieManager): Command {
     /**
      * Execute command abstract method.
      *
-     * @param arguments if it is needed [String]
+     * @param argument if it is needed [String]
      * @return none
      * @author Markov Maxim 2023
      */
-    override fun execute(vararg arguments: String?): Boolean {
+    override fun execute(argument: String?): Boolean {
         // val writer = Files.newBufferedWriter(Paths.get(fileName))
 
         // val csvPrinter = CSVPrinter(writer, CSVFormat.DEFAULT)

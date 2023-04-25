@@ -82,8 +82,25 @@ class Movie(private var name: String, private var coordinates: Coordinates,
             private var genre: MovieGenre, private var mpaaRating: MpaaRating,
             private var screenWriter: Person
 ) {
-    private var id: Long = giveId()
-    private var creationDate: LocalDate = LocalDate.now()
+    private var id: Long
+    private var creationDate: LocalDate
+
+    constructor(name: String, coordinates: Coordinates,
+                oscarsCount: Long, length: Int,
+                genre: MovieGenre, mpaaRating: MpaaRating,
+                screenWriter: Person, id: Long, date: LocalDate) : this(name, coordinates, oscarsCount, length,
+                                                                        genre, mpaaRating, screenWriter) {
+                this.id = id
+                this.creationDate = date
+                }
+    constructor(name: String, coordinates: Coordinates,
+                oscarsCount: Long, length: Int,
+                genre: MovieGenre, mpaaRating: MpaaRating,
+                screenWriter: Person, id: Long) : this(name, coordinates, oscarsCount, length,
+        genre, mpaaRating, screenWriter) {
+        this.id = id
+        this.creationDate = LocalDate.now()
+    }
 
     init {
         if (name.isEmpty())
@@ -92,7 +109,10 @@ class Movie(private var name: String, private var coordinates: Coordinates,
             throw InputException("Oscars couldn't be less than zero")
         if (length < 1)
             throw InputException("Length couldn't be less than zero")
+        id = giveId()
+        creationDate = LocalDate.now()
     }
+
 
     private companion object {
         var cntId: Long = 0
@@ -194,6 +214,7 @@ class Movie(private var name: String, private var coordinates: Coordinates,
      * @author Markov Maxim 2023
      */
     fun updateId(id: Long) {
+        cntId -= 1
         this.id = id
     }
 }

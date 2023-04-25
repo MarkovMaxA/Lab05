@@ -1,9 +1,8 @@
 package commands
 
 import movies.*
-import java.util.*
 
-class DeleteCommand(private val movieManager: MovieManager): Command {
+class RemoveByIdCommand(private val movieManager: MovieManager): Command {
     /**
      * Get information about command abstract method
      *
@@ -19,20 +18,22 @@ class DeleteCommand(private val movieManager: MovieManager): Command {
      * @return name of command [String]
      * @author Markov Maxim 2023
      */
-    override fun getName() = "delete"
+    override fun getName() = "remove_by_id"
 
     /**
      * Execute command abstract method.
      *
-     * @param arguments if it is needed [String]
+     * @param argument if it is needed [String]
      * @return none
      * @author Markov Maxim 2023
      */
-    override fun execute(vararg arguments: String?): Boolean {
-        val scanner = Scanner(System.`in`)
-        print("Element id: ")
+    override fun execute(argument: String?): Boolean {
+        if (argument == null) {
+            println("Usage of this command doesn't need any of arguments")
+            return false
+        }
 
-        val id = scanner.nextLong()
+        val id = argument.toLong()
 
         return movieManager.removeElementById(id)
     }

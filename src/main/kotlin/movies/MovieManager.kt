@@ -9,7 +9,8 @@ import java.util.*
 class MovieManager {
     private val movieQueue: HashSet<Movie> = HashSet<Movie>()
     private val creationDate: LocalDate = LocalDate.now()
-
+    private val maxElements = 10000
+    private var countElements = 0
 
     /**
      * Get movie queue method
@@ -23,11 +24,14 @@ class MovieManager {
      * add movie to collection method
      *
      * @argument new element of collection [Movie]
-     * @return none.
+     * @return true if element was added.
      * @author Markov Maxim 2023
      */
-    fun addMovie(movie: Movie) {
+    fun addMovie(movie: Movie): Boolean {
+        if (countElements >= maxElements) return false
         movieQueue.add(movie)
+        countElements++
+        return true
     }
 
     /**
@@ -41,6 +45,7 @@ class MovieManager {
         for (element in movieQueue) {
             if (element.getId() == id) {
                 movieQueue.remove(element)
+                countElements--
                 return true
             }
         }

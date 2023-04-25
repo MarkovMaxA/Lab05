@@ -24,11 +24,16 @@ class AddIfMinCommand(private val movieManager: MovieManager): Command {
     /**
      * Execute command abstract method.
      *
-     * @param arguments if it is needed [String]
+     * @param argument if it is needed [String]
      * @return none
      * @author Berman Denis 2023
      */
-    override fun execute(vararg arguments: String?): Boolean {
+    override fun execute(argument: String?): Boolean {
+        if (argument != null) {
+            println("Usage of this command doesn't need any of arguments")
+            return false
+        }
+
         val scanner = Scanner(System.`in`)
         print("Input film name: ")
         val name = scanner.nextLine()
@@ -63,9 +68,8 @@ class AddIfMinCommand(private val movieManager: MovieManager): Command {
             }
         }
         if (minValue<oscarsCount){
-            movieManager.addMovie(Movie(name, Coordinates(xcoord, ycoord), oscarsCount, lenght, genre, mpaaRating,
+            return movieManager.addMovie(Movie(name, Coordinates(xcoord, ycoord), oscarsCount, lenght, genre, mpaaRating,
                 Person(personName, personHeight, personColor, personNationality)))
-            return true
         }
     return false
     }

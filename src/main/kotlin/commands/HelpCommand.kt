@@ -22,17 +22,17 @@ class HelpCommand(private val commandManager: CommandManager): Command {
     /**
      * Execute command abstract method.
      *
-     * @param arguments if it is needed [String]
+     * @param argument if it is needed [String]
      * @return none
      * @author Markov Maxim 2023
      */
-    override fun execute(vararg arguments: String?): Boolean {
-        val commands = commandManager.getCommands()
-
-        if (arguments.isNotEmpty()) {
-            println("Usage of command help doesn't need any of arguments")
+    override fun execute(argument: String?): Boolean {
+        if (argument != null) {
+            println("Usage of this command doesn't need any of arguments")
             return false
         }
+
+        val commands = commandManager.getCommands()
 
         for (command in commands.values) {
             println(command.getName() + " - " + command.getDescription())
