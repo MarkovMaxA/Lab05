@@ -2,7 +2,7 @@ package run
 
 import commands.Command
 import commands.CommandManager
-import java.util.Scanner
+import java.util.*
 
 /**
  * Command execution code
@@ -37,7 +37,7 @@ class RunManager(private val commandManager: CommandManager) {
             val executionCode = if (tokens.size > 1) commandExecution(command, tokens[1])
             else commandExecution(command, null)
 
-            if (executionCode == ExecutionCode.EXCEPTION) println("Something went wrong:(")
+            if (executionCode == ExecutionCode.EXCEPTION) println("Something went wrong:((")
             else if (executionCode == ExecutionCode.NO_COMMAND) println("There's no command $tokens[0]")
         }
     }

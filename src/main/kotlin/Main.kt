@@ -1,10 +1,11 @@
+
 import commands.*
 import movies.*
 import run.RunManager
 import java.io.File
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
-
+import java.util.*
 /**
  * Collection handle function
  *
@@ -14,18 +15,16 @@ fun main(args: Array<String>) {
     val movieManager = MovieManager()
     val commandManager = CommandManager()
 
-    if (args.isNotEmpty()) {
-        var FILE_PATH = ""
-        if (args.size > 1) {
-            FILE_PATH = System.getenv(args[1])
+    if (args.isEmpty()) {
+        val envVar=System.getenv("FILE_PATH") //getting environment variable
+        val file = File(envVar)
+        val sc = Scanner(file).useDelimiter("\n") //Scanning by lines
+        val lines=ArrayList<String>()
+        while (sc.hasNext()) {
+            lines.add(sc.next().trim()) //reading in array and deliting spaces
         }
-
-        val file = File(FILE_PATH + args[0])
-        val lines = file.readLines()
-
-        for (line in lines) {
-            val data = line.split(",")
-
+        for (line in lines) { //spliting by commas and writing to the collection
+            val data=line.split(",")
             movieManager.addMovie(Movie(data[0], Coordinates(data[1].toFloat(), data[2].toDouble()), data[3].toLong(),
                 data[4].toInt(), MovieGenre.valueOf(data[5]), MpaaRating.valueOf(data[6]), Person(data[7],
                     data[8].toInt(), Color.valueOf(data[9]), Country.valueOf(data[10])), data[11].toLong(), LocalDate.parse(data[12], DateTimeFormatter.ofPattern("yyyy-MM-dd"))
@@ -46,6 +45,7 @@ fun main(args: Array<String>) {
     commandManager.addCommand(RemoveLowerCommand(movieManager))
     commandManager.addCommand(ShowCommand(movieManager))
     commandManager.addCommand(UpdateCommand(movieManager))
+    commandManager.addCommand(SaveCommand(movieManager))
 
     val runManager = RunManager(commandManager)
 

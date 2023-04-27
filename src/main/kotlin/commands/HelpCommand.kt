@@ -36,6 +36,7 @@ class HelpCommand(private val commandManager: CommandManager): Command {
 
         for (command in commands.values) {
             println(command.getName() + " - " + command.getDescription())
+            println()
         }
         return true
     }

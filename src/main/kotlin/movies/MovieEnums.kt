@@ -4,7 +4,7 @@ package movies
  * Movie genres enum representative class
  */
 enum class MovieGenre {
-    WESTERN,
+    ACTION,
     COMEDY,
     TRAGEDY,
     FANTASY
@@ -27,7 +27,8 @@ enum class MpaaRating {
 enum class Color {
     GREEN,
     BLACK,
-    WHITE
+    WHITE,
+    BROWN
 }
 
 /**
@@ -38,5 +39,5 @@ enum class Country {
     SPAIN,
     CHINA,
     VATICAN,
-    ITALY
+    INDIA
 }

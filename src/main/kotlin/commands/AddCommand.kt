@@ -1,7 +1,7 @@
 package commands
 
 import movies.*
-import java.util.Scanner
+import java.util.*
 
 class AddCommand(private val movieManager: MovieManager): Command {
     /**
@@ -52,7 +52,7 @@ class AddCommand(private val movieManager: MovieManager): Command {
         print("Mpaa rating: ")
         val mpaaString = scanner.next()
         val mpaaRating = MpaaRating.valueOf(mpaaString)
-        println("Person:")
+        println("Person: ")
         print("  Name: ")
         val personName = scanner.next()
         print("  Height: ")

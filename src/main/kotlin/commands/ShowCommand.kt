@@ -36,7 +36,8 @@ class ShowCommand(private val movieManager: MovieManager): Command {
         val movies = movieManager.getMovieQueue()
 
         for (movie in movies) {
-            println("Movie info: $movie")
+            println("Movie info: $movie" +
+                    "\n")
         }
         return true
     }
