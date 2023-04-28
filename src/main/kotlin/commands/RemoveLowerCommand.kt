@@ -1,6 +1,6 @@
 package commands
 
-import movies.*
+import movies.MovieManager
 
 class RemoveLowerCommand(private val movieManager: MovieManager): Command {
     /**
@@ -29,7 +29,7 @@ class RemoveLowerCommand(private val movieManager: MovieManager): Command {
      */
     override fun execute(argument: String?): Boolean {
         if (argument == null) {
-            println("Usage of this command doesn't need any of arguments")
+            println("Usage of this command needs any of arguments")
             return false
         }
 

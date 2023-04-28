@@ -1,6 +1,6 @@
 package commands
 
-import movies.*
+import movies.MovieManager
 
 class PrintDescendingCommand(private val movieManager: MovieManager): Command {
     /**
@@ -38,6 +38,6 @@ class PrintDescendingCommand(private val movieManager: MovieManager): Command {
         for(movie in sortedMovies){
             println(movie.getOscarsCount())
         }
-    return false
+    return true
     }
 }

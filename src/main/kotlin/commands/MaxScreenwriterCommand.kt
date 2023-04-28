@@ -1,6 +1,6 @@
 package commands
 
-import movies.*
+import movies.MovieManager
 
 class MaxScreenwriterCommand(private val movieManager: MovieManager): Command {
     /**
@@ -45,6 +45,6 @@ class MaxScreenwriterCommand(private val movieManager: MovieManager): Command {
                 println("Movie info: $movie")
             }
         }
-    return false
+    return true
     }
 }

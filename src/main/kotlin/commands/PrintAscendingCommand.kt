@@ -1,6 +1,6 @@
 package commands
 
-import movies.*
+import movies.MovieManager
 
 class PrintAscendingCommand(private val movieManager: MovieManager): Command {
     /**
@@ -36,6 +36,6 @@ class PrintAscendingCommand(private val movieManager: MovieManager): Command {
         val movies = movieManager.getMovieQueue()
         val sortedMovies=movies.sortedWith(compareBy{it.getOscarsCount()})
         println("$sortedMovies")
-    return false
+    return true
     }
 }
