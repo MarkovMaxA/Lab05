@@ -1,4 +1,3 @@
-
 import commands.*
 import movies.*
 import run.ConsoleManager

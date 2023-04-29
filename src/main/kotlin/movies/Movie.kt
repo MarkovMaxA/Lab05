@@ -111,6 +111,7 @@ class Movie {
         this.screenWriter = screenWriter
 
         this.id = id
+        cntId = max(id, cntId)
         this.creationDate = date
         }
     constructor(name: String, coordinates: Coordinates,

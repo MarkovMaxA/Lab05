@@ -74,9 +74,8 @@ class ExecuteScriptCommand(private val movieManager: MovieManager): Command() {
                 if (map[tokens[1]] == true) {
                     throw RecursionScriptException()
                 }
-                runManager.runLine(line)
             }
-
+            runManager.runLine(line)
         }
         map[argument] = false
         return true
