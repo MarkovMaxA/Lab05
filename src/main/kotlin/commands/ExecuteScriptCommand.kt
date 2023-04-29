@@ -4,8 +4,13 @@ import movies.MovieManager
 import run.RunManager
 import java.nio.file.Files
 import java.nio.file.Paths
+import java.util.TreeSet
 
 class ExecuteScriptCommand(private val movieManager: MovieManager): Command() {
+    companion object {
+        val map = HashMap<String, Boolean>()
+    }
+
     /**
      * Get information about command abstract method
      *
@@ -37,8 +42,6 @@ class ExecuteScriptCommand(private val movieManager: MovieManager): Command() {
         }
         val commandManager = CommandManager()
 
-        val map = hashMapOf<String, Boolean>()
-
         map[argument] = true
 
         commandManager.addCommand(AddCommand(movieManager))
@@ -67,10 +70,11 @@ class ExecuteScriptCommand(private val movieManager: MovieManager): Command() {
                 if (map[tokens[1]] == true) {
                     throw user_exceptions.InputException("")
                 }
-                map[tokens[1]] = true
+                runManager.runLine(line)
             }
-            runManager.runLine(line)
+
         }
+        map[argument] = false
         return true
     }
 }

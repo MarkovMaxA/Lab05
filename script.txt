@@ -1,4 +1,4 @@
 help
 show
 10
-execute_script C:\Users\Ender\IdeaProjects\Lab5\scriptest.txt
+execute_script scriptest.txt

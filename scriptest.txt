@@ -1,2 +1,3 @@
 show
-execute_script C:\Users\Ender\IdeaProjects\Lab5\script.txt
+execute_script script1.txt
+execute_script script.txt

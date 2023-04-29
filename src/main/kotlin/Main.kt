@@ -13,9 +13,6 @@ import java.time.format.DateTimeFormatter
 fun main() {
     val movieManager = MovieManager()
     val commandManager = CommandManager()
-    val map = hashMapOf<String, Boolean>()
-
-    map["123"] = true
 
 
     val envVar = System.getenv("FILE_PATH") //getting environment variable
