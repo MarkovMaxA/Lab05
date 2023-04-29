@@ -1,7 +1,5 @@
 package commands
 
-import kotlin.collections.HashMap
-
 
 class CommandManager {
     private val commands = HashMap<String, Command>() // map of commands
@@ -22,7 +20,6 @@ class CommandManager {
      */
     fun addCommand(command: Command): Boolean {
         commands[command.getName()] = command
-
         return true
     }
 }

@@ -46,7 +46,7 @@ fun main(args: Array<String>) {
     commandManager.addCommand(ShowCommand(movieManager))
     commandManager.addCommand(UpdateCommand(movieManager))
     commandManager.addCommand(SaveCommand(movieManager))
-
+    commandManager.addCommand(ExecuteScriptCommand(movieManager))
     val runManager = RunManager(commandManager)
 
     runManager.run()
