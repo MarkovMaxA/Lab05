@@ -4,9 +4,8 @@ import movies.MovieManager
 import run.RunManager
 import java.nio.file.Files
 import java.nio.file.Paths
-import java.util.*
 
-class ExecuteScriptCommand(private val movieManager: MovieManager): Command {
+class ExecuteScriptCommand(private val movieManager: MovieManager): Command() {
     /**
      * Get information about command abstract method
      *
@@ -27,7 +26,7 @@ class ExecuteScriptCommand(private val movieManager: MovieManager): Command {
     /**
      * Execute command abstract method.
      *
-     * @param arguments if it is needed [String]
+     * @param argument if it is needed [String]
      * @return none
      * @author Berman Denis 2023
      */
