@@ -27,7 +27,7 @@ class SaveCommand(private val movieManager: MovieManager): Command() {
     /**
      * Execute command abstract method.
      *
-     * @param arguments if it is needed [String]
+     * @param argument if it is needed [String]
      * @return none
      * @author Berman Denis 2023
      */

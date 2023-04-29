@@ -1,7 +1,6 @@
 
 import commands.*
 import movies.*
-import run.ConsoleManager
 import run.RunManager
 import java.io.File
 import java.time.LocalDate
@@ -10,9 +9,8 @@ import java.time.format.DateTimeFormatter
 /**
  * Collection handle function
  *
- * @param args an array of console arguments
  */
-fun main(args: Array<String>) {
+fun main() {
     val movieManager = MovieManager()
     val commandManager = CommandManager()
 

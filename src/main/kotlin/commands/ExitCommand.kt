@@ -35,6 +35,5 @@ class ExitCommand: Command() {
         }
 
         exitProcess(0)
-        return true
     }
 }

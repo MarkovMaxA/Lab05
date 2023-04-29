@@ -1,8 +1,6 @@
 package commands
 
 import movies.*
-import run.ConsoleManager
-import java.util.*
 
 class UpdateCommand(private val movieManager: MovieManager): Command() {
     /**
@@ -34,8 +32,6 @@ class UpdateCommand(private val movieManager: MovieManager): Command() {
             println("Usage of this command needs any of arguments")
             return false
         }
-
-        val scanner = Scanner(System.`in`)
 
         val id = argument.toLong()
 
