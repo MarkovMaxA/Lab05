@@ -1,6 +1,7 @@
 package commands
 
 import run.ConsoleManager
+import user_exceptions.CommandArgumentException
 
 
 class HelpCommand(private val commandManager: CommandManager): Command() {
@@ -29,10 +30,7 @@ class HelpCommand(private val commandManager: CommandManager): Command() {
      * @author Markov Maxim 2023
      */
     override fun execute(argument: String?): Boolean {
-        if (argument != null) {
-            ConsoleManager.consolePrint("Usage of this command doesn't need any of arguments\n")
-            return false
-        }
+        if (argument != null) throw CommandArgumentException()
 
         val commands = commandManager.getCommands()
 

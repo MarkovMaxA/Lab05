@@ -1,7 +1,7 @@
 package commands
 
 import movies.*
-import run.ConsoleManager
+import user_exceptions.CommandArgumentException
 
 class RemoveByIdCommand(private val movieManager: MovieManager): Command() {
     /**
@@ -29,10 +29,7 @@ class RemoveByIdCommand(private val movieManager: MovieManager): Command() {
      * @author Markov Maxim 2023
      */
     override fun execute(argument: String?): Boolean {
-        if (argument == null) {
-            ConsoleManager.consolePrint("Usage of this command doesn't need any of arguments\n")
-            return false
-        }
+        if (argument == null) throw CommandArgumentException()
 
         val id = argument.toLong()
         return movieManager.removeElementById(id)

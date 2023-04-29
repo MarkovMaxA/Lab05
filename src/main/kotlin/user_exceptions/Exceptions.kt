@@ -1,13 +1,16 @@
 package user_exceptions
 
-import java.io.IOException
+import java.io.FileNotFoundException
 
 
-/**
- * Input exception representation class
- */
-class InputException(private val exceptionInfo: String): IOException(exceptionInfo) {
-}
+class ScriptNameException() : FileNotFoundException() {}
+class SetOverflowException(): ArrayIndexOutOfBoundsException() {}
+class CommandArgumentException(): IllegalArgumentException() {}
 
-class RecursionScriptException(private val exceptionInfo: String): RuntimeException(exceptionInfo) { }
+class ValueLessThanZeroException(): IllegalArgumentException() {}
+class MaxValueException(): IllegalArgumentException() {}
+
+class EmptyStringException(): IllegalArgumentException() {}
+
+class RecursionScriptException(): RuntimeException() { }
 

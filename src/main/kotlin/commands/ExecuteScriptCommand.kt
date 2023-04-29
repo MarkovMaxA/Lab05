@@ -2,6 +2,9 @@ package commands
 
 import movies.MovieManager
 import run.RunManager
+import user_exceptions.CommandArgumentException
+import user_exceptions.RecursionScriptException
+import user_exceptions.ScriptNameException
 import java.nio.file.Files
 import java.nio.file.Paths
 
@@ -35,10 +38,7 @@ class ExecuteScriptCommand(private val movieManager: MovieManager): Command() {
      * @author Berman Denis 2023
      */
     override fun execute(argument: String?): Boolean {
-        if (argument == null) {
-            println("Usage of this command unavailible without arguments")
-            return false
-        }
+        if (argument == null) throw CommandArgumentException()
         val commandManager = CommandManager()
 
         map[argument] = true
@@ -61,13 +61,18 @@ class ExecuteScriptCommand(private val movieManager: MovieManager): Command() {
         val runManager = RunManager(commandManager)
 
         val fileName=argument
-        val lines= Files.readAllLines(Paths.get(fileName))
+        val lines: List<String>
+        try {
+            lines = Files.readAllLines(Paths.get(fileName))
+        } catch (e: Exception) {
+            throw ScriptNameException()
+        }
 
         for (line in lines) {
             val tokens = line.split(" ")
             if (tokens[0] == "execute_script") {
                 if (map[tokens[1]] == true) {
-                    throw user_exceptions.RecursionScriptException("в скрипте не может быть команды для запуска другого скрипта!")
+                    throw RecursionScriptException()
                 }
                 runManager.runLine(line)
             }

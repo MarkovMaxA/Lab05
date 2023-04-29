@@ -1,6 +1,6 @@
 package commands
 
-import run.ConsoleManager
+import user_exceptions.CommandArgumentException
 import kotlin.system.exitProcess
 
 class ExitCommand: Command() {
@@ -29,10 +29,7 @@ class ExitCommand: Command() {
      * @author Berman Denis 2023
      */
     override fun execute(argument: String?): Boolean {
-        if (argument != null) {
-            ConsoleManager.consolePrint("Usage of this command doesn't need any of arguments\n")
-            return false
-        }
+        if (argument != null) throw CommandArgumentException()
 
         exitProcess(0)
     }

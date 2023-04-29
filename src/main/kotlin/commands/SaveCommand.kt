@@ -2,9 +2,9 @@ package commands
 
 import movies.MovieManager
 import run.ConsoleManager
+import user_exceptions.CommandArgumentException
 import java.io.File
 import java.io.FileWriter
-import java.util.*
 
 class SaveCommand(private val movieManager: MovieManager): Command() {
     /**
@@ -32,10 +32,7 @@ class SaveCommand(private val movieManager: MovieManager): Command() {
      * @author Berman Denis 2023
      */
     override fun execute(argument: String?): Boolean {
-        if (argument != null) {
-            ConsoleManager.consolePrint("Usage of this command doesn't need any of arguments\n")
-            return false
-        }
+        if (argument != null) throw CommandArgumentException()
         val envVar=System.getenv("FILE_PATH")
         val file = File(envVar)
         val writer = FileWriter(file)

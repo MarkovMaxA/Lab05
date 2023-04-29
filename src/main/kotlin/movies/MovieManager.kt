@@ -1,5 +1,6 @@
 package movies
 
+import user_exceptions.SetOverflowException
 import java.time.LocalDate
 import java.util.*
 
@@ -28,7 +29,7 @@ class MovieManager {
      * @author Markov Maxim 2023
      */
     fun addMovie(movie: Movie): Boolean {
-        if (countElements >= maxElements) return false
+        if (countElements >= maxElements) throw SetOverflowException()
         movieQueue.add(movie)
         countElements++
         return true

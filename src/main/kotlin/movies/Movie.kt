@@ -1,6 +1,8 @@
 package movies
 
-import user_exceptions.InputException
+import user_exceptions.EmptyStringException
+import user_exceptions.MaxValueException
+import user_exceptions.ValueLessThanZeroException
 import java.time.LocalDate
 import kotlin.math.max
 
@@ -8,12 +10,12 @@ import kotlin.math.max
  * Person representation class
  */
 class Person(private val name: String, private val height: Int,
-             private val hairColor: Color? = null, private val nationality: Country? = null) {
+             private val hairColor: Color, private val nationality: Country) {
     init {
         if (name.isEmpty())
-            throw InputException("Name couldn't be zero length")
+            throw EmptyStringException()
         if (height <= 0)
-            throw InputException("Height couldn't be less than zero")
+            throw ValueLessThanZeroException()
     }
 
     /**
@@ -53,10 +55,8 @@ class Person(private val name: String, private val height: Int,
 
 class Coordinates(private val x: Float, private val y: Double) {
     init {
-        if (x <= -513)
-            throw InputException("X must be more than -513")
         if (y > 424)
-            throw InputException("Y must be less or equal 424")
+            throw MaxValueException()
     }
 
     /**
@@ -96,11 +96,11 @@ class Movie {
                 genre: MovieGenre, mpaaRating: MpaaRating,
                 screenWriter: Person, id: Long, date: LocalDate) {
         if (name.isEmpty())
-            throw InputException("Name couldn't be empty")
-        if (oscarsCount < 0)
-            throw InputException("Oscars couldn't be less than zero")
-        if (length < 0)
-            throw InputException("Length couldn't be less than zero")
+            throw EmptyStringException()
+        if (oscarsCount <= 0)
+            throw ValueLessThanZeroException()
+        if (length <= 0)
+            throw ValueLessThanZeroException()
 
         this.name = name
         this.coordinates = coordinates
@@ -118,11 +118,11 @@ class Movie {
                 genre: MovieGenre, mpaaRating: MpaaRating,
                 screenWriter: Person, id: Long) {
         if (name.isEmpty())
-            throw InputException("Name couldn't be empty")
-        if (oscarsCount < 1)
-            throw InputException("Oscars couldn't be less than zero")
-        if (length < 1)
-            throw InputException("Length couldn't be less than zero")
+            throw EmptyStringException()
+        if (oscarsCount <= 0)
+            throw ValueLessThanZeroException()
+        if (length <= 0)
+            throw ValueLessThanZeroException()
 
         this.name = name
         this.coordinates = coordinates
@@ -143,11 +143,11 @@ class Movie {
                 genre: MovieGenre, mpaaRating: MpaaRating,
                 screenWriter: Person) {
         if (name.isEmpty())
-            throw InputException("Name couldn't be empty")
-        if (oscarsCount < 1)
-            throw InputException("Oscars couldn't be less than zero")
-        if (length < 1)
-            throw InputException("Length couldn't be less than zero")
+            throw EmptyStringException()
+        if (oscarsCount <= 0)
+            throw ValueLessThanZeroException()
+        if (length <= 0)
+            throw ValueLessThanZeroException()
 
         this.name = name
         this.coordinates = coordinates

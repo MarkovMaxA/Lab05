@@ -1,6 +1,7 @@
 package commands
 
 import movies.*
+import user_exceptions.CommandArgumentException
 
 class UpdateCommand(private val movieManager: MovieManager): Command() {
     /**
@@ -28,10 +29,7 @@ class UpdateCommand(private val movieManager: MovieManager): Command() {
      * @author Markov Maxim 2023
      */
     override fun execute(argument: String?): Boolean {
-        if (argument == null) {
-            println("Usage of this command needs any of arguments")
-            return false
-        }
+        if (argument == null) throw CommandArgumentException()
 
         val id = argument.toLong()
 

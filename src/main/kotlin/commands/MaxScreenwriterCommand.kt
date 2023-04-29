@@ -2,6 +2,7 @@ package commands
 
 import movies.MovieManager
 import run.ConsoleManager
+import user_exceptions.CommandArgumentException
 
 class MaxScreenwriterCommand(private val movieManager: MovieManager): Command() {
     /**
@@ -29,10 +30,7 @@ class MaxScreenwriterCommand(private val movieManager: MovieManager): Command() 
      * @author Berman Denis 2023
      */
     override fun execute(argument: String?): Boolean {
-        if (argument != null) {
-            ConsoleManager.consolePrint("Usage of this command doesn't need any of arguments\n")
-            return false
-        }
+        if (argument != null) throw CommandArgumentException()
 
         val movies = movieManager.getMovieQueue()
         var maxValue: Int=-1

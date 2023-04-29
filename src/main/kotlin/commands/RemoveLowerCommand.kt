@@ -1,7 +1,7 @@
 package commands
 
 import movies.MovieManager
-import run.ConsoleManager
+import user_exceptions.CommandArgumentException
 
 class RemoveLowerCommand(private val movieManager: MovieManager): Command() {
     /**
@@ -29,10 +29,7 @@ class RemoveLowerCommand(private val movieManager: MovieManager): Command() {
      * @author Berman Denis 2023
      */
     override fun execute(argument: String?): Boolean {
-        if (argument == null) {
-            ConsoleManager.consolePrint("Usage of this command needs any of arguments\n")
-            return false
-        }
+        if (argument == null) throw CommandArgumentException()
 
         val oscarsCount = argument.toLong()
         val movies = movieManager.getMovieQueue()

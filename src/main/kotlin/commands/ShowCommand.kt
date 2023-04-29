@@ -2,6 +2,7 @@ package commands
 
 import movies.MovieManager
 import run.ConsoleManager
+import user_exceptions.CommandArgumentException
 
 class ShowCommand(private val movieManager: MovieManager): Command() {
     /**
@@ -29,11 +30,7 @@ class ShowCommand(private val movieManager: MovieManager): Command() {
      * @author Markov Maxim 2023
      */
     override fun execute(argument: String?): Boolean {
-        if (argument != null) {
-            ConsoleManager.consolePrint("Usage of this command doesn't need any of arguments\n")
-            return false
-        }
-
+        if (argument != null) throw CommandArgumentException()
         val movies = movieManager.getMovieQueue()
 
         for (movie in movies) {
