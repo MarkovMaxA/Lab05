@@ -1,11 +1,12 @@
 package commands
 
 import movies.MovieManager
+import run.ConsoleManager
 import java.io.File
 import java.io.FileWriter
 import java.util.*
 
-class SaveCommand(private val movieManager: MovieManager): Command {
+class SaveCommand(private val movieManager: MovieManager): Command() {
     /**
      * Get information about command abstract method
      *
@@ -26,13 +27,13 @@ class SaveCommand(private val movieManager: MovieManager): Command {
     /**
      * Execute command abstract method.
      *
-     * @param arguments if it is needed [String]
+     * @param argument if it is needed [String]
      * @return none
      * @author Berman Denis 2023
      */
     override fun execute(argument: String?): Boolean {
         if (argument != null) {
-            println("Usage of this command doesn't need any of arguments")
+            ConsoleManager.consolePrint("Usage of this command doesn't need any of arguments\n")
             return false
         }
         val envVar=System.getenv("FILE_PATH")
@@ -49,9 +50,11 @@ class SaveCommand(private val movieManager: MovieManager): Command {
                 movie.getScreenwriter().getHairColor().toString(),movie.getScreenwriter().getNationality().toString(),
                 movie.getId().toString(),movie.getCreationDate().toString() )
             writer.write(movieValues.joinToString(",")+"\n")
-            println(movieValues.joinToString(","))
+            ConsoleManager.consolePrint(movieValues.joinToString(",") + "\n")
         }
+
         writer.close()
+
         return true
     }
 }

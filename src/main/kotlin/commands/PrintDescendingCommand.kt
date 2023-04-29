@@ -1,8 +1,9 @@
 package commands
 
 import movies.MovieManager
+import run.ConsoleManager
 
-class PrintDescendingCommand(private val movieManager: MovieManager): Command {
+class PrintDescendingCommand(private val movieManager: MovieManager): Command() {
     /**
      * Get information about command abstract method
      *
@@ -29,7 +30,7 @@ class PrintDescendingCommand(private val movieManager: MovieManager): Command {
      */
     override fun execute(argument: String?): Boolean {
         if (argument != null) {
-            println("Usage of this command doesn't need any of arguments")
+            ConsoleManager.consolePrint("Usage of this command doesn't need any of arguments\n")
             return false
         }
 

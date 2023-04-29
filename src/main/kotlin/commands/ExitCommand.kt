@@ -1,8 +1,9 @@
 package commands
 
+import run.ConsoleManager
 import kotlin.system.exitProcess
 
-class ExitCommand: Command{
+class ExitCommand: Command() {
     /**
      * Get information about command abstract method
      *
@@ -29,11 +30,10 @@ class ExitCommand: Command{
      */
     override fun execute(argument: String?): Boolean {
         if (argument != null) {
-            println("Usage of this command doesn't need any of arguments")
+            ConsoleManager.consolePrint("Usage of this command doesn't need any of arguments\n")
             return false
         }
 
         exitProcess(0)
-        return true
     }
 }

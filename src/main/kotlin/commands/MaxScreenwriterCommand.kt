@@ -1,8 +1,9 @@
 package commands
 
 import movies.MovieManager
+import run.ConsoleManager
 
-class MaxScreenwriterCommand(private val movieManager: MovieManager): Command {
+class MaxScreenwriterCommand(private val movieManager: MovieManager): Command() {
     /**
      * Get information about command abstract method
      *
@@ -29,7 +30,7 @@ class MaxScreenwriterCommand(private val movieManager: MovieManager): Command {
      */
     override fun execute(argument: String?): Boolean {
         if (argument != null) {
-            println("Usage of this command doesn't need any of arguments")
+            ConsoleManager.consolePrint("Usage of this command doesn't need any of arguments\n")
             return false
         }
 
@@ -42,7 +43,7 @@ class MaxScreenwriterCommand(private val movieManager: MovieManager): Command {
         }
         for (movie in movies){
             if (movie.getScreenwriter().getHeight()==maxValue){
-                println("Movie info: $movie")
+                ConsoleManager.consolePrint("Movie info: $movie\n")
             }
         }
     return true

@@ -1,12 +1,13 @@
 package commands
 
 import movies.MovieManager
+import run.ConsoleManager
 
 
 /**
  * info command representation class
  */
-class InfoCommand(private val movieManager: MovieManager): Command {
+class InfoCommand(private val movieManager: MovieManager): Command() {
     /**
      * Get information about command abstract method
      *
@@ -33,13 +34,13 @@ class InfoCommand(private val movieManager: MovieManager): Command {
      */
     override fun execute(argument: String?): Boolean {
         if (argument != null) {
-            println("Usage of this command doesn't need any of arguments")
+            ConsoleManager.consolePrint("Usage of this command doesn't need any of arguments\n")
             return false
         }
 
-        println("Class: " + movieManager.getCollectionClass())
-        println("Creation date: " + movieManager.getCreationDate())
-        println("Number of elements: " + movieManager.getCollectionNumberOfElements())
+        ConsoleManager.consolePrint("Class: " + movieManager.getCollectionClass() + "\n")
+        ConsoleManager.consolePrint("Creation date: " + movieManager.getCreationDate() + "\n")
+        ConsoleManager.consolePrint("Number of elements: " + movieManager.getCollectionNumberOfElements() + "\n")
         return true
     }
 }

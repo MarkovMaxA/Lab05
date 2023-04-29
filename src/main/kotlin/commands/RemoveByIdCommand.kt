@@ -1,8 +1,9 @@
 package commands
 
 import movies.*
+import run.ConsoleManager
 
-class RemoveByIdCommand(private val movieManager: MovieManager): Command {
+class RemoveByIdCommand(private val movieManager: MovieManager): Command() {
     /**
      * Get information about command abstract method
      *
@@ -29,12 +30,11 @@ class RemoveByIdCommand(private val movieManager: MovieManager): Command {
      */
     override fun execute(argument: String?): Boolean {
         if (argument == null) {
-            println("Usage of this command doesn't need any of arguments")
+            ConsoleManager.consolePrint("Usage of this command doesn't need any of arguments\n")
             return false
         }
 
         val id = argument.toLong()
-
         return movieManager.removeElementById(id)
     }
 }

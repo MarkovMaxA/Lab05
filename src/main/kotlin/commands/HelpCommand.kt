@@ -1,7 +1,9 @@
 package commands
 
+import run.ConsoleManager
 
-class HelpCommand(private val commandManager: CommandManager): Command {
+
+class HelpCommand(private val commandManager: CommandManager): Command() {
     /**
      * Get information about command abstract method
      *
@@ -28,15 +30,14 @@ class HelpCommand(private val commandManager: CommandManager): Command {
      */
     override fun execute(argument: String?): Boolean {
         if (argument != null) {
-            println("Usage of this command doesn't need any of arguments")
+            ConsoleManager.consolePrint("Usage of this command doesn't need any of arguments\n")
             return false
         }
 
         val commands = commandManager.getCommands()
 
         for (command in commands.values) {
-            println(command.getName() + " - " + command.getDescription())
-            println()
+            ConsoleManager.consolePrint(command.getName() + " - " + command.getDescription() + "\n")
         }
         return true
     }
