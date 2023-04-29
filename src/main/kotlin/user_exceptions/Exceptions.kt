@@ -14,3 +14,4 @@ class EmptyStringException(): IllegalArgumentException() {}
 
 class RecursionScriptException(): RuntimeException() { }
 
+class NullEnvironmentException(): IllegalArgumentException() {}
