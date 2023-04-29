@@ -3,6 +3,7 @@ package commands
 import movies.MovieManager
 import run.ConsoleManager
 import user_exceptions.CommandArgumentException
+import user_exceptions.NullEnvironmentException
 import java.io.File
 import java.io.FileWriter
 
@@ -34,6 +35,7 @@ class SaveCommand(private val movieManager: MovieManager): Command() {
     override fun execute(argument: String?): Boolean {
         if (argument != null) throw CommandArgumentException()
         val envVar=System.getenv("FILE_PATH")
+        if (envVar == null) throw NullEnvironmentException()
         val file = File(envVar)
         val writer = FileWriter(file)
 
