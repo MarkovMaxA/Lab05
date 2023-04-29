@@ -42,27 +42,16 @@ class MovieManager {
      * @author Markov Maxim 2023
      */
     fun removeElementById(id: Long): Boolean {
+        var elementToDelete : Movie? = null
         for (element in movieQueue) {
             if (element.getId() == id) {
-                movieQueue.remove(element)
-                countElements--
-                return true
+                elementToDelete = element
             }
         }
-        return false
-    }
 
-    /**
-     * update element by id from collection
-     *
-     * @argument id element id from collection
-     * @return true if element was deleted.
-     * @author Markov Maxim 2023
-     */
-    fun updateElementById(id: Long, movie: Movie): Boolean {
-        if (removeElementById(id)) {
-            movie.updateId(id)
-            addMovie(movie)
+        if (elementToDelete != null) {
+            movieQueue.remove(elementToDelete)
+            countElements--
             return true
         }
 

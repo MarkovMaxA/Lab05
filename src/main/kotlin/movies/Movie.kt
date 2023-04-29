@@ -2,6 +2,7 @@ package movies
 
 import user_exceptions.InputException
 import java.time.LocalDate
+import kotlin.math.max
 
 /**
  * Person representation class
@@ -79,42 +80,86 @@ class Coordinates(private val x: Float, private val y: Double) {
     }
 }
 
-class Movie(private var name: String, private var coordinates: Coordinates,
-            private var oscarsCount: Long, private var length: Int,
-            private var genre: MovieGenre, private var mpaaRating: MpaaRating,
-            private var screenWriter: Person
-) {
+class Movie {
+    private var name: String
+    private var coordinates: Coordinates
+    private var oscarsCount: Long
+    private var length: Int
+    private var genre: MovieGenre
+    private var mpaaRating: MpaaRating
+    private var screenWriter: Person
     private var id: Long
     private var creationDate: LocalDate
 
     constructor(name: String, coordinates: Coordinates,
                 oscarsCount: Long, length: Int,
                 genre: MovieGenre, mpaaRating: MpaaRating,
-                screenWriter: Person, id: Long, date: LocalDate) : this(name, coordinates, oscarsCount, length,
-                                                                        genre, mpaaRating, screenWriter) {
-                this.id = id
-                this.creationDate = date
-                }
+                screenWriter: Person, id: Long, date: LocalDate) {
+        if (name.isEmpty())
+            throw InputException("Name couldn't be empty")
+        if (oscarsCount < 0)
+            throw InputException("Oscars couldn't be less than zero")
+        if (length < 0)
+            throw InputException("Length couldn't be less than zero")
+
+        this.name = name
+        this.coordinates = coordinates
+        this.oscarsCount = oscarsCount
+        this.length = length
+        this.genre = genre
+        this.mpaaRating = mpaaRating
+        this.screenWriter = screenWriter
+
+        this.id = id
+        this.creationDate = date
+        }
     constructor(name: String, coordinates: Coordinates,
                 oscarsCount: Long, length: Int,
                 genre: MovieGenre, mpaaRating: MpaaRating,
-                screenWriter: Person, id: Long) : this(name, coordinates, oscarsCount, length,
-        genre, mpaaRating, screenWriter) {
-        this.id = id
-        this.creationDate = LocalDate.now()
-    }
-
-    init {
+                screenWriter: Person, id: Long) {
         if (name.isEmpty())
             throw InputException("Name couldn't be empty")
         if (oscarsCount < 1)
             throw InputException("Oscars couldn't be less than zero")
         if (length < 1)
             throw InputException("Length couldn't be less than zero")
-        id = giveId()
-        creationDate = LocalDate.now()
+
+        this.name = name
+        this.coordinates = coordinates
+        this.oscarsCount = oscarsCount
+        this.length = length
+        this.genre = genre
+        this.mpaaRating = mpaaRating
+        this.screenWriter = screenWriter
+
+        this.id = id
+
+        cntId = max(id, cntId)
+        this.creationDate = LocalDate.now()
     }
 
+    constructor(name: String, coordinates: Coordinates,
+                oscarsCount: Long, length: Int,
+                genre: MovieGenre, mpaaRating: MpaaRating,
+                screenWriter: Person) {
+        if (name.isEmpty())
+            throw InputException("Name couldn't be empty")
+        if (oscarsCount < 1)
+            throw InputException("Oscars couldn't be less than zero")
+        if (length < 1)
+            throw InputException("Length couldn't be less than zero")
+
+        this.name = name
+        this.coordinates = coordinates
+        this.oscarsCount = oscarsCount
+        this.length = length
+        this.genre = genre
+        this.mpaaRating = mpaaRating
+        this.screenWriter = screenWriter
+        id = giveId()
+        creationDate = LocalDate.now()
+
+    }
 
     private companion object {
         var cntId: Long = 0
@@ -206,18 +251,6 @@ class Movie(private var name: String, private var coordinates: Coordinates,
         return "ID: $id\nName: $name\nCoordinates: $coordinates\nCreation date: $creationDate\n" +
                 "Oscars count: $oscarsCount\nLenght: $length\n Genre: $genre\n Mpaa rating: $mpaaRating\n" +
                 "Screen writer: $screenWriter"
-    }
-
-    /**
-     * updates movie id
-     *
-     * @argument id movie id [Long]
-     * @return none.
-     * @author Markov Maxim 2023
-     */
-    fun updateId(id: Long) {
-        cntId -= 1
-        this.id = id
     }
 }
 

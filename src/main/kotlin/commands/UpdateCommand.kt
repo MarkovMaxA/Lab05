@@ -1,9 +1,10 @@
 package commands
 
 import movies.*
+import run.ConsoleManager
 import java.util.*
 
-class UpdateCommand(private val movieManager: MovieManager): Command {
+class UpdateCommand(private val movieManager: MovieManager): Command() {
     /**
      * Get information about command abstract method
      *
@@ -37,37 +38,12 @@ class UpdateCommand(private val movieManager: MovieManager): Command {
         val scanner = Scanner(System.`in`)
 
         val id = argument.toLong()
-        print("Input film name: ")
-        val name = scanner.next()
-        println("Input coordinates: ")
-        print("  X: ")
-        val xcoord = scanner.nextFloat()
-        print("  Y: ")
-        val ycoord = scanner.nextDouble()
-        print("Oscars count: ")
-        val oscarsCount = scanner.nextLong()
-        print("Length: ")
-        val lenght = scanner.nextInt()
-        print("Genre: ")
-        val genreString = scanner.next()
-        val genre = MovieGenre.valueOf(genreString)
-        print("Mpaa rating: ")
-        val mpaaString = scanner.next()
-        val mpaaRating = MpaaRating.valueOf(mpaaString)
-        println("Person:")
-        print("  Name: ")
-        val personName = scanner.next()
-        print("  Height: ")
-        val personHeight = scanner.nextInt()
-        print("  Hair color: ")
-        val colorString = scanner.next()
-        val personColor = Color.valueOf(colorString)
-        print("  Nationality: ")
-        val nationalityString = scanner.next()
-        val personNationality = Country.valueOf(nationalityString)
 
-        if (movieManager.removeElementById(id)) movieManager.addMovie(Movie(name, Coordinates(xcoord, ycoord), oscarsCount, lenght, genre,
-            mpaaRating, Person(personName, personHeight, personColor, personNationality), id))
+        val data = setData()
+
+        if (movieManager.removeElementById(id)) return movieManager.addMovie(Movie(data.name,
+            data.coordinates, data.oscarsCount, data.length, data.genre,
+            data.mpaaRating, data.screenWriter, id))
         return false
     }
 }

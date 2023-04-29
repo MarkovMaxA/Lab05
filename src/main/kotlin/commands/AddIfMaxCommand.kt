@@ -1,9 +1,9 @@
 package commands
 
 import movies.*
-import java.util.Scanner
+import run.ConsoleManager
 
-class AddIfMaxCommand(private val movieManager: MovieManager): Command {
+class AddIfMaxCommand(private val movieManager: MovieManager): Command() {
     /**
      * Get information about command abstract method
      *
@@ -30,39 +30,11 @@ class AddIfMaxCommand(private val movieManager: MovieManager): Command {
      */
     override fun execute(argument: String?): Boolean {
         if (argument != null) {
-            println("Usage of this command doesn't need any of arguments")
+            ConsoleManager.consolePrint("Usage of this command doesn't need any of arguments\n")
             return false
         }
 
-        val scanner = Scanner(System.`in`)
-        print("Input film name: ")
-        val name = scanner.next()
-        println("Input coordinates: ")
-        print("  X: ")
-        val xcoord = scanner.nextFloat()
-        print("  Y: ")
-        val ycoord = scanner.nextDouble()
-        print("Oscars count: ")
-        val oscarsCount = scanner.nextLong()
-        print("Length: ")
-        val lenght = scanner.nextInt()
-        print("Genre: ")
-        val genreString = scanner.next()
-        val genre = MovieGenre.valueOf(genreString)
-        print("Mpaa rating: ")
-        val mpaaString = scanner.next()
-        val mpaaRating = MpaaRating.valueOf(mpaaString)
-        println("Person:")
-        print("  Name: ")
-        val personName = scanner.next()
-        print("  Height: ")
-        val personHeight = scanner.nextInt()
-        print("  Hair color: ")
-        val colorString = scanner.next()
-        val personColor = Color.valueOf(colorString)
-        print("  Nationality: ")
-        val nationalityString = scanner.next()
-        val personNationality = Country.valueOf(nationalityString)
+        val data = setData()
 
         val movies = movieManager.getMovieQueue()
         var maxValue:Long=-1
@@ -71,9 +43,10 @@ class AddIfMaxCommand(private val movieManager: MovieManager): Command {
                 maxValue=movie.getOscarsCount()
             }
         }
-        if (maxValue>oscarsCount){
-            return movieManager.addMovie(Movie(name, Coordinates(xcoord, ycoord), oscarsCount, lenght, genre, mpaaRating,
-                Person(personName, personHeight, personColor, personNationality)))
+
+        if (maxValue > data.oscarsCount){
+            return movieManager.addMovie(Movie(data.name, data.coordinates, data.oscarsCount, data.length, data.genre,
+                data.mpaaRating, data.screenWriter))
         }
     return false
     }

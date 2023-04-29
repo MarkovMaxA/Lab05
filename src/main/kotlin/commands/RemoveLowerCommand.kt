@@ -1,8 +1,9 @@
 package commands
 
 import movies.MovieManager
+import run.ConsoleManager
 
-class RemoveLowerCommand(private val movieManager: MovieManager): Command {
+class RemoveLowerCommand(private val movieManager: MovieManager): Command() {
     /**
      * Get information about command abstract method
      *
@@ -29,18 +30,22 @@ class RemoveLowerCommand(private val movieManager: MovieManager): Command {
      */
     override fun execute(argument: String?): Boolean {
         if (argument == null) {
-            println("Usage of this command needs any of arguments")
+            ConsoleManager.consolePrint("Usage of this command needs any of arguments\n")
             return false
         }
 
         val oscarsCount = argument.toLong()
-
         val movies = movieManager.getMovieQueue()
-        for (movie in movies){
-            if (movie.getOscarsCount()<oscarsCount){
-                return movieManager.removeElementById(movie.getId())
+        var id : Long? = null
+
+        for (movie in movies) {
+            if (movie.getOscarsCount() < oscarsCount){
+                id = movie.getId()
             }
         }
-    return true
+
+        if (id != null) return movieManager.removeElementById(id)
+
+        return false
     }
 }

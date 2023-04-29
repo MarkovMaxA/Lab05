@@ -23,22 +23,18 @@ class RunManager(private val commandManager: CommandManager) {
      * @author Markov Maxim 2023S
      */
     fun run() {
-        val sc = Scanner(System.`in`)
-        while (sc.hasNext()) {
-            val line = sc.next()
+        while (ConsoleManager.hasNext()) {
+            val line = ConsoleManager.getNextLine()
 
             val tokens = line.split(" ")
 
-            if (tokens.isEmpty()) {
-                println("Something went wrong:(")
-            }
             val command = commandManager.getCommands()[tokens[0]]
 
             val executionCode = if (tokens.size > 1) commandExecution(command, tokens[1])
             else commandExecution(command, null)
 
-            if (executionCode == ExecutionCode.EXCEPTION) println("Something went wrong:((")
-            else if (executionCode == ExecutionCode.NO_COMMAND) println("There's no command $tokens[0]")
+            if (executionCode == ExecutionCode.EXCEPTION) ConsoleManager.consolePrint("Something went wrong:((\n")
+            else if (executionCode == ExecutionCode.NO_COMMAND) ConsoleManager.consolePrint("There's no command ${tokens[0]}\n")
         }
     }
 
@@ -55,6 +51,7 @@ class RunManager(private val commandManager: CommandManager) {
         try {
             if (command.execute(argument)) return ExecutionCode.COMPLETED
         } catch (e: Exception) {
+            ConsoleManager.consolePrint(e.javaClass.simpleName + "\n")
             return ExecutionCode.EXCEPTION
         }
         return ExecutionCode.EXCEPTION

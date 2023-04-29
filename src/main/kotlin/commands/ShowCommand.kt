@@ -1,8 +1,9 @@
 package commands
 
 import movies.MovieManager
+import run.ConsoleManager
 
-class ShowCommand(private val movieManager: MovieManager): Command {
+class ShowCommand(private val movieManager: MovieManager): Command() {
     /**
      * Get information about command abstract method
      *
@@ -29,15 +30,14 @@ class ShowCommand(private val movieManager: MovieManager): Command {
      */
     override fun execute(argument: String?): Boolean {
         if (argument != null) {
-            println("Usage of this command doesn't need any of arguments")
+            ConsoleManager.consolePrint("Usage of this command doesn't need any of arguments\n")
             return false
         }
 
         val movies = movieManager.getMovieQueue()
 
         for (movie in movies) {
-            println("Movie info: $movie" +
-                    "\n")
+            ConsoleManager.consolePrint("Movie info: $movie\n\n")
         }
         return true
     }
