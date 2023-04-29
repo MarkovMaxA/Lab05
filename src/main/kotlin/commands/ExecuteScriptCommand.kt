@@ -37,6 +37,11 @@ class ExecuteScriptCommand(private val movieManager: MovieManager): Command() {
         }
 
         val commandManager = CommandManager()
+
+        val map = hashMapOf<String, Boolean>()
+
+        map[argument] = true
+
         commandManager.addCommand(AddCommand(movieManager))
         commandManager.addCommand(AddIfMaxCommand(movieManager))
         commandManager.addCommand(AddIfMinCommand(movieManager))
@@ -58,6 +63,13 @@ class ExecuteScriptCommand(private val movieManager: MovieManager): Command() {
         val lines= Files.readAllLines(Paths.get(fileName))
 
         for (line in lines) {
+            val tokens = line.split(" ")
+            if (tokens[0] == "execute_script") {
+                if (map[tokens[1]] == true) {
+                    throw user_exceptions.InputException("")
+                }
+                map[tokens[1]] = true
+            }
             runManager.runLine(line)
         }
         return true
