@@ -4,7 +4,6 @@ import movies.MovieManager
 import run.RunManager
 import java.nio.file.Files
 import java.nio.file.Paths
-import java.util.TreeSet
 
 class ExecuteScriptCommand(private val movieManager: MovieManager): Command() {
     companion object {
@@ -68,7 +67,7 @@ class ExecuteScriptCommand(private val movieManager: MovieManager): Command() {
             val tokens = line.split(" ")
             if (tokens[0] == "execute_script") {
                 if (map[tokens[1]] == true) {
-                    throw user_exceptions.InputException("")
+                    throw user_exceptions.RecursionScriptException("в скрипте не может быть команды для запуска другого скрипта!")
                 }
                 runManager.runLine(line)
             }
