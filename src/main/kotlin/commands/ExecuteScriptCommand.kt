@@ -35,7 +35,6 @@ class ExecuteScriptCommand(private val movieManager: MovieManager): Command() {
             println("Usage of this command unavailible without arguments")
             return false
         }
-
         val commandManager = CommandManager()
 
         val map = hashMapOf<String, Boolean>()

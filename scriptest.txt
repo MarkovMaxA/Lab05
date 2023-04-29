@@ -1,0 +1,2 @@
+show
+execute_script C:\Users\Ender\IdeaProjects\Lab5\script.txt
