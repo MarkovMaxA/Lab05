@@ -6,8 +6,11 @@ import run.ConsoleManager
 import run.RunManager
 import user_exceptions.NullEnvironmentException
 import java.io.File
+import java.nio.file.Paths
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import java.util.*
+import kotlin.io.path.Path
 
 /**
  * Collection handle function
@@ -18,10 +21,15 @@ fun main() {
     val commandManager = CommandManager()
 
 
-    val envVar = System.getenv("FILE_PATH") //getting environment variable
+    val envVar = System.getenv("FILE_PATH")
     if (envVar != null) {
-        val file = File(envVar)
-        val lines = file.readLines()
+        val lines = ArrayList<String>()
+        val scanner = Scanner(Paths.get(envVar))
+        scanner.useDelimiter("\n")
+        while (scanner.hasNext()) {
+            lines.add(scanner.next())
+        }
+        scanner.close()
         for (line in lines) {
             val data = line.split(",")  // splitting by commas and writing to the collection
             movieManager.addMovie(

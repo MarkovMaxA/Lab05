@@ -12,10 +12,9 @@ import kotlin.math.max
 class Person(private val name: String, private val height: Int,
              private val hairColor: Color, private val nationality: Country) {
     init {
-        if (name.isEmpty())
-            throw EmptyStringException()
-        if (height <= 0)
-            throw ValueLessThanZeroException()
+        if (name.isEmpty()) throw EmptyStringException()
+        if (name.contains(",")) throw EmptyStringException()
+        if (height <= 0) throw ValueLessThanZeroException()
     }
 
     /**
@@ -95,12 +94,10 @@ class Movie {
                 oscarsCount: Long, length: Int,
                 genre: MovieGenre, mpaaRating: MpaaRating,
                 screenWriter: Person, id: Long, date: LocalDate) {
-        if (name.isEmpty())
-            throw EmptyStringException()
-        if (oscarsCount <= 0)
-            throw ValueLessThanZeroException()
-        if (length <= 0)
-            throw ValueLessThanZeroException()
+        if (name.isEmpty()) throw EmptyStringException()
+        if (name.contains(",")) throw EmptyStringException()
+        if (oscarsCount <= 0) throw ValueLessThanZeroException()
+        if (length <= 0) throw ValueLessThanZeroException()
 
         this.name = name
         this.coordinates = coordinates
