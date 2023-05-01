@@ -1,3 +1,5 @@
+package main
+
 import commands.*
 import movies.*
 import run.ConsoleManager
@@ -36,7 +38,6 @@ fun main() {
     } else {
         ConsoleManager.consolePrint(NullEnvironmentException().stackTraceToString() + "\n")
     }
-
     commandManager.addCommand(AddCommand(movieManager))
     commandManager.addCommand(AddIfMaxCommand(movieManager))
     commandManager.addCommand(AddIfMinCommand(movieManager))

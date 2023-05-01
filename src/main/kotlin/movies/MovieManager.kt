@@ -11,7 +11,7 @@ class MovieManager {
     private val movieQueue: HashSet<Movie> = HashSet<Movie>()
     private val creationDate: LocalDate = LocalDate.now()
     private val maxElements = 10000
-    private var countElements = 0
+    private var countElements = movieQueue.size
 
     /**
      * Get movie queue method
@@ -31,7 +31,6 @@ class MovieManager {
     fun addMovie(movie: Movie): Boolean {
         if (countElements >= maxElements) throw SetOverflowException()
         movieQueue.add(movie)
-        countElements++
         return true
     }
 
@@ -52,7 +51,6 @@ class MovieManager {
 
         if (elementToDelete != null) {
             movieQueue.remove(elementToDelete)
-            countElements--
             return true
         }
 
