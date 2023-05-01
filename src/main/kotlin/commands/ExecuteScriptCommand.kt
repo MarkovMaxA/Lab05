@@ -7,10 +7,11 @@ import user_exceptions.RecursionScriptException
 import user_exceptions.ScriptNameException
 import java.nio.file.Files
 import java.nio.file.Paths
+import java.util.*
 
 class ExecuteScriptCommand(private val movieManager: MovieManager): Command() {
     companion object {
-        val map = HashMap<String, Boolean>()
+        val map = TreeMap<String, Boolean>()
     }
 
     /**

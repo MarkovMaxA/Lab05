@@ -1,5 +1,4 @@
-package movies
-
+import movies.*
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import kotlin.random.Random
@@ -10,7 +9,6 @@ fun randomString() = (1..100)
     .map { Random.nextInt(0, charPool.size).let { charPool[it] } }
     .joinToString("")
 class MovieExceptionsTest {
-
     @Test
     fun movieCreationTest() {
         for (i in 1..1000000) {

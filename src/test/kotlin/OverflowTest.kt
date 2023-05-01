@@ -1,5 +1,4 @@
-package movies
-
+import movies.*
 import org.junit.jupiter.api.Test
 import user_exceptions.SetOverflowException
 import org.junit.jupiter.api.Assertions.*
