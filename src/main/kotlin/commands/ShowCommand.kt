@@ -11,8 +11,7 @@ class ShowCommand(private val movieManager: MovieManager): Command() {
      * @return information about command [String]
      * @author Markov Maxim 2023
      */
-    override fun getDescription() = "Command is showing description of all elements in collection in console\n" +
-            "[Command]: show"
+    override fun getDescription() = "Command is showing description of all elements in collection in console"
 
     /**
      * Get name of command abstract method
@@ -30,7 +29,7 @@ class ShowCommand(private val movieManager: MovieManager): Command() {
      * @author Markov Maxim 2023
      */
     override fun execute(argument: String?): Boolean {
-        if (argument != null) throw CommandArgumentException()
+        if (argument != null) throw CommandArgumentException("Method show don't support arguments")
         val movies = movieManager.getMovieQueue()
 
         for (movie in movies) {

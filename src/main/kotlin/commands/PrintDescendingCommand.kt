@@ -10,8 +10,7 @@ class PrintDescendingCommand(private val movieManager: MovieManager): Command() 
      * @return information about command [String]
      * @author Berman Denis 2023
      */
-    override fun getDescription() = "Command is printing all the elements descending oscars count value way\n" +
-            "[Command]: print_descending"
+    override fun getDescription() = "Command is printing all the elements descending oscars count value way"
 
     /**
      * Get name of command abstract method
@@ -29,7 +28,7 @@ class PrintDescendingCommand(private val movieManager: MovieManager): Command() 
      * @author Berman Denis 2023
      */
     override fun execute(argument: String?): Boolean {
-        if (argument != null) throw CommandArgumentException()
+        if (argument != null) throw CommandArgumentException("Method print_descending don't support arguments")
 
         val movies = movieManager.getMovieQueue()
         val sortedMovies=movies.sortedWith(compareBy{it.getOscarsCount()}).reversed()

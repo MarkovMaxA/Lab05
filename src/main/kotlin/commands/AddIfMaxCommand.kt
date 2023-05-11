@@ -10,8 +10,7 @@ class AddIfMaxCommand(private val movieManager: MovieManager): Command() {
      * @return information about command [String]
      * @author Berman Denis 2023
      */
-    override fun getDescription() = "Command is adding element, if it's value more then maximum\n" +
-            "[Command]: add_if_max"
+    override fun getDescription() = "Command is adding element, if it's value more then maximum"
 
     /**
      * Get name of command abstract method
@@ -29,7 +28,7 @@ class AddIfMaxCommand(private val movieManager: MovieManager): Command() {
      * @author Berman Denis 2023
      */
     override fun execute(argument: String?): Boolean {
-        if (argument != null) throw CommandArgumentException()
+        if (argument != null) throw CommandArgumentException("Method add_if_max don't support arguments")
 
         val data = setData()
 

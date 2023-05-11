@@ -10,8 +10,7 @@ class RemoveLowerCommand(private val movieManager: MovieManager): Command() {
      * @return information about command [String]
      * @author Berman Denis 2023
      */
-    override fun getDescription() = "Command is removing all the elements, that are less\n" +
-            "[Command]: remove_lower"
+    override fun getDescription() = "Command is removing all the elements, that are less"
 
     /**
      * Get name of command abstract method
@@ -29,7 +28,7 @@ class RemoveLowerCommand(private val movieManager: MovieManager): Command() {
      * @author Berman Denis 2023
      */
     override fun execute(argument: String?): Boolean {
-        if (argument == null) throw CommandArgumentException()
+        if (argument == null) throw CommandArgumentException("Method remove_lower don't support zero arguments")
 
         val oscarsCount = argument.toLong()
         val movies = movieManager.getMovieQueue()

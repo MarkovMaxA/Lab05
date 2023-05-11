@@ -1,16 +1,14 @@
 package main
 
 import commands.*
+import main.builders.MovieBuilder
 import movies.*
 import run.ConsoleManager
 import run.RunManager
-import user_exceptions.NullEnvironmentException
-import java.io.File
 import java.nio.file.Paths
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.*
-import kotlin.io.path.Path
 
 /**
  * Collection handle function
@@ -21,8 +19,9 @@ fun main() {
     val commandManager = CommandManager()
 
 
-    val envVar = System.getenv("FILE_PATH")
-    if (envVar != null) {
+    try {
+        val envVar = System.getenv("FILE_PATH")
+
         val lines = ArrayList<String>()
         val scanner = Scanner(Paths.get(envVar))
         scanner.useDelimiter("\n")
@@ -43,9 +42,10 @@ fun main() {
                 )
             )
         }
-    } else {
-        ConsoleManager.consolePrint(NullEnvironmentException().stackTraceToString() + "\n")
+    } catch(e: Exception) {
+        ConsoleManager.consolePrint(e.stackTraceToString() + "\n")
     }
+    // MovieBuilder().build()
     commandManager.addCommand(AddCommand(movieManager))
     commandManager.addCommand(AddIfMaxCommand(movieManager))
     commandManager.addCommand(AddIfMinCommand(movieManager))

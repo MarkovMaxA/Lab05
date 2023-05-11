@@ -11,8 +11,7 @@ class HelpCommand(private val commandManager: CommandManager): Command() {
      * @return information about command [String]
      * @author Markov Maxim 2023
      */
-    override fun getDescription() = "Command is printing commands description in console\n" +
-            "[Command]: help"
+    override fun getDescription() = "Command is printing commands description in console"
 
     /**
      * Get name of command abstract method
@@ -30,12 +29,12 @@ class HelpCommand(private val commandManager: CommandManager): Command() {
      * @author Markov Maxim 2023
      */
     override fun execute(argument: String?): Boolean {
-        if (argument != null) throw CommandArgumentException()
+        if (argument != null) throw CommandArgumentException("Method help don't support arguments")
 
         val commands = commandManager.getCommands()
 
         for (command in commands.values) {
-            ConsoleManager.consolePrint(command.getName() + " - " + command.getDescription() + "\n")
+            ConsoleManager.consolePrint(command.getName() + " - " + command.getDescription() + "\n\n")
         }
         return true
     }

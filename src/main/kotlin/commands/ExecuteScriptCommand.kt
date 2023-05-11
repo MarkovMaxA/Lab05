@@ -20,8 +20,7 @@ class ExecuteScriptCommand(private val movieManager: MovieManager): Command() {
      * @return information about command [String]
      * @author Berman Denis 2023
      */
-    override fun getDescription() = "Command is executing commands from user's script file\n" +
-            "[Command]: execute_script <file>"
+    override fun getDescription() = "Command is executing commands from user's script file"
 
     /**
      * Get name of command abstract method
@@ -39,7 +38,7 @@ class ExecuteScriptCommand(private val movieManager: MovieManager): Command() {
      * @author Berman Denis 2023
      */
     override fun execute(argument: String?): Boolean {
-        if (argument == null) throw CommandArgumentException()
+        if (argument == null) throw CommandArgumentException("Method execute_script don't support zero arguments")
         val commandManager = CommandManager()
 
         map[argument] = true
@@ -61,19 +60,18 @@ class ExecuteScriptCommand(private val movieManager: MovieManager): Command() {
         commandManager.addCommand(ExecuteScriptCommand(movieManager))
         val runManager = RunManager(commandManager)
 
-        val fileName=argument
         val lines: List<String>
         try {
-            lines = Files.readAllLines(Paths.get(fileName))
+            lines = Files.readAllLines(Paths.get(argument))
         } catch (e: Exception) {
-            throw ScriptNameException()
+            throw ScriptNameException("There's no file with name $argument")
         }
 
         for (line in lines) {
             val tokens = line.split(" ")
             if (tokens[0] == "execute_script") {
                 if (map[tokens[1]] == true) {
-                    throw RecursionScriptException()
+                    throw RecursionScriptException("Your script files contains recursion")
                 }
             }
             runManager.runLine(line)

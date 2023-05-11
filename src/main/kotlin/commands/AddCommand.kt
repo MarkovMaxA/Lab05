@@ -10,8 +10,7 @@ class AddCommand(private val movieManager: MovieManager): Command() {
      * @return information about command [String]
      * @author Markov Maxim 2023
      */
-    override fun getDescription() = "Command is adding new element in collection\n" +
-            "[Command]: add"
+    override fun getDescription() = "Command is adding new element in collections"
 
     /**
      * Get name of command abstract method
@@ -29,7 +28,7 @@ class AddCommand(private val movieManager: MovieManager): Command() {
      * @author Markov Maxim 2023
      */
     override fun execute(argument: String?): Boolean {
-        if (argument != null) throw CommandArgumentException()
+        if (argument != null) throw CommandArgumentException("Method add don't support arguments")
 
         val data = setData()
 

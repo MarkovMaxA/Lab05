@@ -10,8 +10,7 @@ class AddIfMinCommand(private val movieManager: MovieManager): Command() {
      * @return information about command [String]
      * @author Berman Denis 2023
      */
-    override fun getDescription() = "Command is adding element, if it's value less then minimum\n" +
-            "[Command]: add_if_min"
+    override fun getDescription() = "Command is adding element, if it's value less then minimum"
 
     /**
      * Get name of command abstract method
@@ -29,7 +28,7 @@ class AddIfMinCommand(private val movieManager: MovieManager): Command() {
      * @author Berman Denis 2023
      */
     override fun execute(argument: String?): Boolean {
-        if (argument != null) throw CommandArgumentException()
+        if (argument != null) throw CommandArgumentException("Method add_if_min don't support arguments")
 
         val data = setData()
 

@@ -10,8 +10,7 @@ class ExitCommand: Command() {
      * @return information about command [String]
      * @author Berman Denis 2023
      */
-    override fun getDescription() = "Command is shutting down the program without saving\n" +
-            "[Command]: exit"
+    override fun getDescription() = "Command is shutting down the program without saving"
 
     /**
      * Get name of command abstract method
@@ -29,7 +28,7 @@ class ExitCommand: Command() {
      * @author Berman Denis 2023
      */
     override fun execute(argument: String?): Boolean {
-        if (argument != null) throw CommandArgumentException()
+        if (argument != null) throw CommandArgumentException("Method exit don't support arguments")
 
         exitProcess(0)
     }

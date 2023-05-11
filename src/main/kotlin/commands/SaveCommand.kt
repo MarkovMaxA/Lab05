@@ -14,8 +14,7 @@ class SaveCommand(private val movieManager: MovieManager): Command() {
      * @return information about command [String]
      * @author Berman Denis 2023
      */
-    override fun getDescription() = "Command is saving collection of movies to csv file in environment variable\n" +
-            "[Command]: save"
+    override fun getDescription() = "Command is saving collection of movies to csv file in environment variable"
 
     /**
      * Get name of command abstract method
@@ -33,9 +32,8 @@ class SaveCommand(private val movieManager: MovieManager): Command() {
      * @author Berman Denis 2023
      */
     override fun execute(argument: String?): Boolean {
-        if (argument != null) throw CommandArgumentException()
-        val envVar=System.getenv("FILE_PATH")
-        if (envVar == null) throw NullEnvironmentException()
+        if (argument != null) throw CommandArgumentException("Method save don't support arguments")
+        val envVar= System.getenv("FILE_PATH") ?: throw NullEnvironmentException("There's no environment variable with name FILE_PATH")
         val file = File(envVar)
         val writer = FileWriter(file)
 

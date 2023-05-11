@@ -10,8 +10,7 @@ class PrintAscendingCommand(private val movieManager: MovieManager): Command() {
      * @return information about command [String]
      * @author Berman Denis 2023
      */
-    override fun getDescription() = "Command is printing all the elements ascending way\n" +
-            "[Command]: print_ascending"
+    override fun getDescription() = "Command is printing all the elements ascending way"
 
     /**
      * Get name of command abstract method
@@ -29,7 +28,7 @@ class PrintAscendingCommand(private val movieManager: MovieManager): Command() {
      * @author Berman Denis 2023
      */
     override fun execute(argument: String?): Boolean {
-        if (argument != null) throw CommandArgumentException()
+        if (argument != null) throw CommandArgumentException("Method print_ascending don't support arguments")
 
         val movies = movieManager.getMovieQueue()
         val sortedMovies=movies.sortedWith(compareBy{it.getOscarsCount()})

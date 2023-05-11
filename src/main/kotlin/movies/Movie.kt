@@ -12,9 +12,9 @@ import kotlin.math.max
 class Person(private val name: String, private val height: Int,
              private val hairColor: Color, private val nationality: Country) {
     init {
-        if (name.isEmpty()) throw EmptyStringException()
-        if (name.contains(",")) throw EmptyStringException()
-        if (height <= 0) throw ValueLessThanZeroException()
+        if (name.isEmpty()) throw EmptyStringException("Person need's name")
+        if (name.contains(",")) throw EmptyStringException("Name can't use symbol ','")
+        if (height <= 0) throw ValueLessThanZeroException("Height can't be less than zero")
     }
 
     /**
@@ -55,7 +55,7 @@ class Person(private val name: String, private val height: Int,
 class Coordinates(private val x: Float, private val y: Double) {
     init {
         if (y > 424)
-            throw MaxValueException()
+            throw MaxValueException("Y can't be more than 424")
     }
 
     /**
@@ -94,10 +94,10 @@ class Movie {
                 oscarsCount: Long, length: Int,
                 genre: MovieGenre, mpaaRating: MpaaRating,
                 screenWriter: Person, id: Long, date: LocalDate) {
-        if (name.isEmpty()) throw EmptyStringException()
-        if (name.contains(",")) throw EmptyStringException()
-        if (oscarsCount <= 0) throw ValueLessThanZeroException()
-        if (length <= 0) throw ValueLessThanZeroException()
+        if (name.isEmpty()) throw EmptyStringException("Movie name can't be empty")
+        if (name.contains(",")) throw EmptyStringException("Movie name can't use symbol ','")
+        if (oscarsCount <= 0) throw ValueLessThanZeroException("Oscars count needs to be more than zero")
+        if (length <= 0) throw ValueLessThanZeroException("Length needs to be more than zero")
 
         this.name = name
         this.coordinates = coordinates
@@ -115,12 +115,10 @@ class Movie {
                 oscarsCount: Long, length: Int,
                 genre: MovieGenre, mpaaRating: MpaaRating,
                 screenWriter: Person, id: Long) {
-        if (name.isEmpty())
-            throw EmptyStringException()
-        if (oscarsCount <= 0)
-            throw ValueLessThanZeroException()
-        if (length <= 0)
-            throw ValueLessThanZeroException()
+        if (name.isEmpty()) throw EmptyStringException("Movie name can't be empty")
+        if (name.contains(",")) throw EmptyStringException("Movie name can't use symbol ','")
+        if (oscarsCount <= 0) throw ValueLessThanZeroException("Oscars count needs to be more than zero")
+        if (length <= 0) throw ValueLessThanZeroException("Length needs to be more than zero")
 
         this.name = name
         this.coordinates = coordinates
@@ -140,12 +138,10 @@ class Movie {
                 oscarsCount: Long, length: Int,
                 genre: MovieGenre, mpaaRating: MpaaRating,
                 screenWriter: Person) {
-        if (name.isEmpty())
-            throw EmptyStringException()
-        if (oscarsCount <= 0)
-            throw ValueLessThanZeroException()
-        if (length <= 0)
-            throw ValueLessThanZeroException()
+        if (name.isEmpty()) throw EmptyStringException("Movie name can't be empty")
+        if (name.contains(",")) throw EmptyStringException("Movie name can't use symbol ','")
+        if (oscarsCount <= 0) throw ValueLessThanZeroException("Oscars count needs to be more than zero")
+        if (length <= 0) throw ValueLessThanZeroException("Length needs to be more than zero")
 
         this.name = name
         this.coordinates = coordinates

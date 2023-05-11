@@ -10,8 +10,7 @@ class UpdateCommand(private val movieManager: MovieManager): Command() {
      * @return information about command [String]
      * @author Markov Maxim 2023
      */
-    override fun getDescription() = "Command is updating element from collection\n" +
-            "[Command]: update <id>"
+    override fun getDescription() = "Command is updating element from collection"
 
     /**
      * Get name of command abstract method
@@ -29,7 +28,7 @@ class UpdateCommand(private val movieManager: MovieManager): Command() {
      * @author Markov Maxim 2023
      */
     override fun execute(argument: String?): Boolean {
-        if (argument == null) throw CommandArgumentException()
+        if (argument == null) throw CommandArgumentException("Method update don't support zero arguments")
 
         val id = argument.toLong()
 
