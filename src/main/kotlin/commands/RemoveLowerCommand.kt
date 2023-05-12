@@ -35,7 +35,7 @@ class RemoveLowerCommand(private val movieManager: MovieManager): Command() {
         var id : Long? = null
 
         for (movie in movies) {
-            if (movie.getOscarsCount() < oscarsCount){
+            if ((movie.getOscarsCount() ?: 0) < oscarsCount){
                 id = movie.getId()
             }
         }

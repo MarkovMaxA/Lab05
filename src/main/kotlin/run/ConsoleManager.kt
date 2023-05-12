@@ -9,13 +9,7 @@ object ConsoleManager {
         print(string)
     }
 
-    fun getInt() = scanner.nextInt()
-    fun getLong() = scanner.nextLong()
-    fun getFloat() = scanner.nextFloat()
-    fun getNext() = scanner.next()
-
-    fun getNextLine() = scanner.nextLine()
+    fun getNextLine(): String = scanner.nextLine()
 
     fun hasNext() = scanner.hasNext()
-    fun getDouble() = scanner.nextDouble()
 }

@@ -1,5 +1,6 @@
 package commands
 
+import main.builders.MovieBuilder
 import movies.*
 import user_exceptions.CommandArgumentException
 
@@ -30,9 +31,6 @@ class AddCommand(private val movieManager: MovieManager): Command() {
     override fun execute(argument: String?): Boolean {
         if (argument != null) throw CommandArgumentException("Method add don't support arguments")
 
-        val data = setData()
-
-        return movieManager.addMovie(Movie(data.name, data.coordinates, data.oscarsCount, data.length, data.genre,
-            data.mpaaRating, data.screenWriter))
+        return movieManager.addMovie(MovieBuilder.build())
     }
 }

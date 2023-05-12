@@ -40,12 +40,12 @@ class SaveCommand(private val movieManager: MovieManager): Command() {
 
         val movies = movieManager.getMovieQueue()
         for (movie in movies) {
-            val movieValues=arrayOf(movie.getName(), movie.getCoordinates().getX().toString(),
-                movie.getCoordinates().getY().toString(),movie.getOscarsCount().toString(),
-                movie.getLength().toString(),movie.getGenre().toString(),movie.getMpaaRating().toString(),
-                movie.getScreenwriter().getName(),movie.getScreenwriter().getHeight().toString(),
-                movie.getScreenwriter().getHairColor().toString(),movie.getScreenwriter().getNationality().toString(),
-                movie.getId().toString(),movie.getCreationDate().toString() )
+            val movieValues = arrayOf(movie.getName(), movie.getCoordinates().getX().toString(),
+                movie.getCoordinates().getY().toString(), (movie.getOscarsCount() ?: "").toString(),
+                movie.getLength().toString(), movie.getGenre().toString(),(movie.getMpaaRating() ?: "").toString(),
+                movie.getScreenwriter().getName(), movie.getScreenwriter().getHeight().toString(),
+                movie.getScreenwriter().getHairColor().toString(), movie.getScreenwriter().getNationality().toString(),
+                movie.getId().toString(), movie.getCreationDate().toString() )
             writer.write(movieValues.joinToString(",")+"\n")
             ConsoleManager.consolePrint(movieValues.joinToString(",") + "\n")
         }

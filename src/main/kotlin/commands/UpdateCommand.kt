@@ -1,5 +1,6 @@
 package commands
 
+import main.builders.MovieBuilder
 import movies.*
 import user_exceptions.CommandArgumentException
 
@@ -32,11 +33,9 @@ class UpdateCommand(private val movieManager: MovieManager): Command() {
 
         val id = argument.toLong()
 
-        val data = setData()
+        val movie = MovieBuilder.build(id)
 
-        if (movieManager.removeElementById(id)) return movieManager.addMovie(Movie(data.name,
-            data.coordinates, data.oscarsCount, data.length, data.genre,
-            data.mpaaRating, data.screenWriter, id))
+        if (movieManager.removeElementById(id)) return movieManager.addMovie(movie)
         return false
     }
 }

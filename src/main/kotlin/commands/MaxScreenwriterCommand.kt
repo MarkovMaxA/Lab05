@@ -1,5 +1,6 @@
 package commands
 
+import movies.Movie
 import movies.MovieManager
 import run.ConsoleManager
 import user_exceptions.CommandArgumentException
@@ -32,17 +33,17 @@ class MaxScreenwriterCommand(private val movieManager: MovieManager): Command() 
         if (argument != null) throw CommandArgumentException("Method max_by_screenwriter don't support arguments")
 
         val movies = movieManager.getMovieQueue()
-        var maxValue: Int=-1
-        for (movie in movies){
-            if (movie.getScreenwriter().getHeight()>maxValue){
-                maxValue= movie.getScreenwriter().getHeight()
+        var maxMovie: Movie? = null
+
+        for (movie in movies) {
+            if ((maxMovie == null) || (movie.getScreenwriter().getHeight() > maxMovie.getOscarsCount()!!)) {
+                maxMovie = movie
             }
         }
-        for (movie in movies){
-            if (movie.getScreenwriter().getHeight()==maxValue){
-                ConsoleManager.consolePrint("Movie info: $movie\n")
-            }
-        }
-    return true
+
+        if (maxMovie != null) ConsoleManager.consolePrint("Movie info: $maxMovie\n")
+        else ConsoleManager.consolePrint("There's no maximum movie\n")
+
+        return true
     }
 }

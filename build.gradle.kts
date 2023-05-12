@@ -2,7 +2,7 @@ plugins {
     kotlin("jvm") version "1.8.10"
     id("java")
     id("jacoco")
-
+    application
 }
 
 group = "org.example"
@@ -22,4 +22,8 @@ dependencies {
     implementation(kotlin("stdlib-jdk8"))
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.1")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
+}
+
+application {
+    mainClass.set("main.Main")
 }

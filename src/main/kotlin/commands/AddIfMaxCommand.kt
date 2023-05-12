@@ -1,5 +1,6 @@
 package commands
 
+import main.builders.MovieBuilder
 import movies.*
 import user_exceptions.CommandArgumentException
 
@@ -30,20 +31,21 @@ class AddIfMaxCommand(private val movieManager: MovieManager): Command() {
     override fun execute(argument: String?): Boolean {
         if (argument != null) throw CommandArgumentException("Method add_if_max don't support arguments")
 
-        val data = setData()
+        val movieToAdd = MovieBuilder.build()
 
         val movies = movieManager.getMovieQueue()
         var maxValue:Long=-1
-        for (movie in movies){
-            if (movie.getOscarsCount()>maxValue){
-                maxValue=movie.getOscarsCount()
+        for (movie in movies) {
+            val oscarsCount = movie.getOscarsCount() ?: 0
+
+            if ((oscarsCount) > maxValue){
+                maxValue = oscarsCount
             }
         }
 
-        if (maxValue > data.oscarsCount){
-            return movieManager.addMovie(Movie(data.name, data.coordinates, data.oscarsCount, data.length, data.genre,
-                data.mpaaRating, data.screenWriter))
+        if (maxValue > (movieToAdd.getOscarsCount() ?: 0)) {
+            return movieManager.addMovie(movieToAdd)
         }
-    return false
+        return false
     }
 }

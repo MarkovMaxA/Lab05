@@ -1,5 +1,6 @@
 package commands
 
+import main.builders.MovieBuilder
 import movies.*
 import user_exceptions.CommandArgumentException
 
@@ -30,19 +31,21 @@ class AddIfMinCommand(private val movieManager: MovieManager): Command() {
     override fun execute(argument: String?): Boolean {
         if (argument != null) throw CommandArgumentException("Method add_if_min don't support arguments")
 
-        val data = setData()
-
+        val movieToAdd = MovieBuilder.build()
         val movies = movieManager.getMovieQueue()
-        var minValue:Long=12
-        for (movie in movies){
-            if (movie.getOscarsCount()<minValue){
-                minValue=movie.getOscarsCount()
+        var minValue:Long = 12
+
+        for (movie in movies) {
+            val oscarsCount = movie.getOscarsCount() ?: 0
+
+            if (oscarsCount < minValue) {
+                minValue = oscarsCount
             }
         }
-        if (minValue < data.oscarsCount){
-            return movieManager.addMovie(Movie(data.name, data.coordinates, data.oscarsCount, data.length, data.genre,
-                data.mpaaRating, data.screenWriter))
+
+        if (minValue < (movieToAdd.getOscarsCount() ?: 0)) {
+            return movieManager.addMovie(movieToAdd)
         }
-    return false
+        return false
     }
 }

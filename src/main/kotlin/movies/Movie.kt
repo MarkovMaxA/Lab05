@@ -10,11 +10,23 @@ import kotlin.math.max
  * Person representation class
  */
 class Person(private val name: String, private val height: Int,
-             private val hairColor: Color, private val nationality: Country) {
+             private val hairColor: Color, private val nationality: Country?) {
     init {
-        if (name.isEmpty()) throw EmptyStringException("Person need's name")
-        if (name.contains(",")) throw EmptyStringException("Name can't use symbol ','")
-        if (height <= 0) throw ValueLessThanZeroException("Height can't be less than zero")
+        checkNameRestrictions(name)
+        checkHeightRestrictions(height)
+    }
+
+    companion object {
+        @JvmStatic
+        fun checkNameRestrictions(name: String) {
+            if (name.isEmpty()) throw EmptyStringException("Person need's name")
+            if (name.contains(",")) throw EmptyStringException("Name can't use symbol ','")
+        }
+
+        @JvmStatic
+        fun checkHeightRestrictions(height: Int) {
+            if (height <= 0) throw ValueLessThanZeroException("Height can't be less than zero")
+        }
     }
 
     /**
@@ -54,8 +66,13 @@ class Person(private val name: String, private val height: Int,
 
 class Coordinates(private val x: Float, private val y: Double) {
     init {
-        if (y > 424)
-            throw MaxValueException("Y can't be more than 424")
+        checkYRestrictions(y)
+    }
+    companion object {
+        @JvmStatic
+        fun checkYRestrictions(y: Double) {
+            if (y > 424) throw MaxValueException("Y can't be more than 424")
+        }
     }
 
     /**
@@ -82,22 +99,21 @@ class Coordinates(private val x: Float, private val y: Double) {
 class Movie {
     private var name: String
     private var coordinates: Coordinates
-    private var oscarsCount: Long
+    private var oscarsCount: Long?
     private var length: Int
     private var genre: MovieGenre
-    private var mpaaRating: MpaaRating
+    private var mpaaRating: MpaaRating?
     private var screenWriter: Person
     private var id: Long
     private var creationDate: LocalDate
 
     constructor(name: String, coordinates: Coordinates,
-                oscarsCount: Long, length: Int,
-                genre: MovieGenre, mpaaRating: MpaaRating,
+                oscarsCount: Long?, length: Int,
+                genre: MovieGenre, mpaaRating: MpaaRating?,
                 screenWriter: Person, id: Long, date: LocalDate) {
-        if (name.isEmpty()) throw EmptyStringException("Movie name can't be empty")
-        if (name.contains(",")) throw EmptyStringException("Movie name can't use symbol ','")
-        if (oscarsCount <= 0) throw ValueLessThanZeroException("Oscars count needs to be more than zero")
-        if (length <= 0) throw ValueLessThanZeroException("Length needs to be more than zero")
+        checkNameRestrictions(name)
+        checkOscarsCountRestrictions(oscarsCount)
+        checkLengthRestrictions(length)
 
         this.name = name
         this.coordinates = coordinates
@@ -112,13 +128,12 @@ class Movie {
         this.creationDate = date
         }
     constructor(name: String, coordinates: Coordinates,
-                oscarsCount: Long, length: Int,
-                genre: MovieGenre, mpaaRating: MpaaRating,
+                oscarsCount: Long?, length: Int,
+                genre: MovieGenre, mpaaRating: MpaaRating?,
                 screenWriter: Person, id: Long) {
-        if (name.isEmpty()) throw EmptyStringException("Movie name can't be empty")
-        if (name.contains(",")) throw EmptyStringException("Movie name can't use symbol ','")
-        if (oscarsCount <= 0) throw ValueLessThanZeroException("Oscars count needs to be more than zero")
-        if (length <= 0) throw ValueLessThanZeroException("Length needs to be more than zero")
+        checkNameRestrictions(name)
+        checkOscarsCountRestrictions(oscarsCount)
+        checkLengthRestrictions(length)
 
         this.name = name
         this.coordinates = coordinates
@@ -135,13 +150,12 @@ class Movie {
     }
 
     constructor(name: String, coordinates: Coordinates,
-                oscarsCount: Long, length: Int,
-                genre: MovieGenre, mpaaRating: MpaaRating,
+                oscarsCount: Long?, length: Int,
+                genre: MovieGenre, mpaaRating: MpaaRating?,
                 screenWriter: Person) {
-        if (name.isEmpty()) throw EmptyStringException("Movie name can't be empty")
-        if (name.contains(",")) throw EmptyStringException("Movie name can't use symbol ','")
-        if (oscarsCount <= 0) throw ValueLessThanZeroException("Oscars count needs to be more than zero")
-        if (length <= 0) throw ValueLessThanZeroException("Length needs to be more than zero")
+        checkNameRestrictions(name)
+        checkOscarsCountRestrictions(oscarsCount)
+        checkLengthRestrictions(length)
 
         this.name = name
         this.coordinates = coordinates
@@ -155,8 +169,23 @@ class Movie {
 
     }
 
-    private companion object {
-        var cntId: Long = 0
+    companion object {
+        fun checkNameRestrictions(name: String) {
+            if (name.isEmpty()) throw EmptyStringException("Movie name can't be empty")
+            if (name.contains(",")) throw EmptyStringException("Movie name can't use symbol ','")
+        }
+
+        fun checkOscarsCountRestrictions(oscarsCount: Long?) {
+            if (oscarsCount != null)
+                if (oscarsCount <= 0)
+                    throw ValueLessThanZeroException("Oscars count needs to be more than zero")
+        }
+
+        fun checkLengthRestrictions(length: Int) {
+            if (length <= 0) throw ValueLessThanZeroException("Length needs to be more than zero")
+        }
+
+        private var cntId: Long = 0
 
         /**
          * Giving id to movie instance method
@@ -164,7 +193,7 @@ class Movie {
          * @return id of new movie [Long]
          */
         @JvmStatic
-        fun giveId(): Long {
+        private fun giveId(): Long {
             cntId += 1
             return cntId
         }
