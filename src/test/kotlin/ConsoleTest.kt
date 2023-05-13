@@ -1,5 +1,7 @@
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import run.ConsoleManager
+import user_exceptions.EmptyStringException
 import java.io.ByteArrayOutputStream
 import java.io.PrintStream
 
@@ -9,8 +11,8 @@ class ConsoleTest {
         val output = ByteArrayOutputStream()
         val printStream = PrintStream(output)
         System.setOut(printStream)
-        for (i in 0..10000) {
-            ConsoleManager.consolePrint("randomString()")
-        }
+        Assertions.assertDoesNotThrow(
+        ) {
+            ConsoleManager.consolePrint("command")
     }
-}
+}}

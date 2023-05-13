@@ -8,5 +8,5 @@ class PersonTest {
         assertThrows(user_exceptions.ValueLessThanZeroException::class.java,
             {Person("randomString()", -5, Color.BLACK, Country.CHINA)
             })
-      }
+    }
 }

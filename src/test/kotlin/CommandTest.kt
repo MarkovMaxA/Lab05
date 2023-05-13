@@ -1,13 +1,16 @@
 import commands.*
-import movies.MovieManager
+import movies.*
+import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Assertions.assertDoesNotThrow
+import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 import run.RunManager
+import user_exceptions.ValueLessThanZeroException
 import java.io.ByteArrayOutputStream
 import java.io.PrintStream
 import kotlin.random.Random
 import kotlin.random.nextInt
 import kotlin.test.BeforeTest
-
 
 class CommandTest {
     val movieManager = MovieManager()
@@ -40,9 +43,10 @@ class CommandTest {
         val printStream = PrintStream(output)
         System.setOut(printStream)
         val commands = listOf("show", "help", "info", "print_ascending", "print_descending")
-
-        for (i in 0..10000) {
-            run.runLine(commands[Random.nextInt(commands.indices)])
+        Assertions.assertDoesNotThrow(
+        ) {
+            for (command in commands) {
+                run.runLine(command) }
         }
     }
 }

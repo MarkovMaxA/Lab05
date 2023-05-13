@@ -10,7 +10,7 @@ import java.util.*
 class MovieManager {
     private val movieQueue: HashSet<Movie> = HashSet<Movie>()
     private val creationDate: LocalDate = LocalDate.now()
-    private val maxElements = 10000
+    private val maxElements = 3
     private var countElements = movieQueue.size
 
     /**

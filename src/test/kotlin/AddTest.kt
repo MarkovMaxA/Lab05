@@ -5,7 +5,7 @@ import kotlin.random.Random
 import kotlin.random.nextInt
 import kotlin.random.nextLong
 
-class RemoveTest {
+class AddTest {
     private val movieManager = MovieManager()
 
     @Test
@@ -20,6 +20,7 @@ class RemoveTest {
                 MpaaRating.R,
                 Person("randomString()", 1, Color.BLACK, Country.CHINA))
         )
+        val queue= HashSet( movieManager.getMovieQueue())
         movieManager.addMovie(
             Movie(
                 "test2",
@@ -30,8 +31,6 @@ class RemoveTest {
                 MpaaRating.R,
                 Person("randomString()",1, Color.BLACK, Country.CHINA))
         )
-        val queue= HashSet( movieManager.getMovieQueue())
-        movieManager.removeElementById(2)
         assertNotEquals(queue,movieManager.getMovieQueue())
         }
     }
