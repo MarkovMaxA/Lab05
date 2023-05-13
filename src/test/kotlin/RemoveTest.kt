@@ -33,7 +33,7 @@ class RemoveTest {
                     }
                 }
             } catch (e: Exception) {
-                assertEquals(e.javaClass.`package`, user_exceptions.MaxValueException().javaClass.`package`)
+                assertEquals(e.javaClass.`package`, user_exceptions.MaxValueException("писька").javaClass.`package`)
             }
         }
     }

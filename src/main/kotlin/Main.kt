@@ -8,7 +8,7 @@ import java.nio.file.Paths
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.*
-
+import org.valiktor.*
 /**
  * Collection handle function
  *
@@ -49,7 +49,7 @@ private fun readSet(movieManager: MovieManager) {
 
     val lines = ArrayList<String>()
     val scanner = Scanner(Paths.get(envVar))
-    scanner.useDelimiter("\n")
+    scanner.useDelimiter("\r\n")
     while (scanner.hasNext()) {
         lines.add(scanner.next())
     }

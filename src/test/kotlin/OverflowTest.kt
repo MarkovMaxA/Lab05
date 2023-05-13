@@ -20,7 +20,7 @@ class OverflowTest {
                     )
                 )
             } catch (e: Exception) {
-                assertEquals(e.javaClass, SetOverflowException().javaClass)
+                assertEquals(e.javaClass, SetOverflowException("писька").javaClass)
                 break
             }
         }

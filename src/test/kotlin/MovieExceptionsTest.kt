@@ -23,7 +23,7 @@ class MovieExceptionsTest {
                         Person(randomString(), Random.nextInt(), Color.BLACK, Country.CHINA)
                     )
             } catch (e: Exception) {
-                assertEquals(e.javaClass.`package`, user_exceptions.MaxValueException().javaClass.`package`)
+                assertEquals(e.javaClass.`package`, user_exceptions.MaxValueException("писька").javaClass.`package`)
             }
         }
     }
