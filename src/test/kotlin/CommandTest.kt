@@ -1,6 +1,5 @@
 import commands.*
 import movies.MovieManager
-import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 import run.RunManager
 import java.io.ByteArrayOutputStream
@@ -45,7 +44,5 @@ class CommandTest {
         for (i in 0..10000) {
             run.runLine(commands[Random.nextInt(commands.indices)])
         }
-
-
     }
 }
