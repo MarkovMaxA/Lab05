@@ -31,7 +31,7 @@ class PrintDescendingCommand(private val movieManager: MovieManager): Command() 
         if (argument != null) throw CommandArgumentException("Method print_descending don't support arguments")
 
         val movies = movieManager.getMovieQueue()
-        val sortedMovies = movies.sortedWith(compareBy{it.getOscarsCount()}).reversed()
+        val sortedMovies = movies.sortedBy{it.getOscarsCount() ?: 0}.reversed()
         for (movie in sortedMovies) {
             println(movie.getOscarsCount())
         }

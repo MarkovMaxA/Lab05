@@ -58,7 +58,7 @@ private fun readSet(movieManager: MovieManager) {
         val data = line.split(",")  // splitting by commas and writing to the collection
 
         var oscarsCount: Long? = null
-        if (data.isNotEmpty()) oscarsCount = data[3].toLong()
+        if (data[3].isNotEmpty()) oscarsCount = data[3].toLong()
 
         var mpaaRating: MpaaRating? = null
         if (data[6].isNotEmpty()) mpaaRating = MpaaRating.valueOf(data[6])
