@@ -29,7 +29,7 @@ class MovieManager {
      * @author Markov Maxim 2023
      */
     fun addMovie(movie: Movie): Boolean {
-        if (countElements >= maxElements) throw SetOverflowException("Collection has maximum elements")
+        if (movieQueue.size >= maxElements) throw SetOverflowException("Collection has maximum elements")
         movieQueue.add(movie)
         return true
     }
