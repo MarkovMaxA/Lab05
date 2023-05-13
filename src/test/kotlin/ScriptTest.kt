@@ -4,7 +4,7 @@ import run.RunManager
 import org.junit.jupiter.api.Test
 import java.io.ByteArrayOutputStream
 import java.io.PrintStream
-import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 class ScriptTest {
     @Test
@@ -34,8 +34,6 @@ class ScriptTest {
         val printStream = PrintStream(output)
         System.setOut(printStream)
         run.runLine("execute_script script.txt")
-        if (!output.toString().contains("RecursionScriptException")) {
-            assertEquals(1, 2)
-        }
+        assertTrue { output.toString().contains("RecursionScriptException") }
     }
 }
