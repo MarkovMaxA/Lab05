@@ -22,6 +22,7 @@ dependencies {
     implementation(kotlin("stdlib-jdk8"))
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.1")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
+    implementation("org.valiktor:valiktor-core:0.12.0")
 }
 
 application {
