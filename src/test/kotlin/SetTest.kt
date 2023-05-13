@@ -8,11 +8,11 @@ class SetTest {
     @Test
     fun setTest() {
         val movie = Movie(
-            randomString(), Coordinates(12f, 13.0), 12,
+            "randomString()", Coordinates(12f, 13.0), 12,
             11,
             MovieGenre.ACTION,
             MpaaRating.R,
-            Person(randomString(), 14, Color.BLACK, Country.CHINA)
+            Person("randomString()", 14, Color.BLACK, Country.CHINA)
         )
         movieManager.addMovie(movie)
         movieManager.addMovie(movie)

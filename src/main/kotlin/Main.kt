@@ -21,7 +21,7 @@ fun main() {
     try {
         readSet(movieManager)
     } catch (e: Exception) {
-        ConsoleManager.consolePrint(e.stackTraceToString() + "\n")
+        ConsoleManager.consolePrint( "Error reading file\n")
     }
 
     commandManager.addCommand(AddCommand(movieManager))

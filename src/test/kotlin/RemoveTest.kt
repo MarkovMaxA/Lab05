@@ -17,13 +17,13 @@ class RemoveTest {
                 if (rnd == 0) {
                     movieManager.addMovie(
                         Movie(
-                        randomString(),
+                        "randomString()",
                         Coordinates(Random.nextFloat(), Random.nextDouble()),
                         Random.nextLong(),
                         Random.nextInt(),
                         MovieGenre.ACTION,
                         MpaaRating.R,
-                        Person(randomString(), Random.nextInt(), Color.BLACK, Country.CHINA)
+                        Person("randomString()", Random.nextInt(), Color.BLACK, Country.CHINA)
                     )
                     )
                 } else {
@@ -33,7 +33,7 @@ class RemoveTest {
                     }
                 }
             } catch (e: Exception) {
-                assertEquals(e.javaClass.`package`, user_exceptions.MaxValueException().javaClass.`package`)
+                assertEquals(e.javaClass.`package`, user_exceptions.MaxValueException("fdafsa").javaClass.`package`)
             }
         }
     }

@@ -12,15 +12,15 @@ class OverflowTest {
             try {
                 movieManager.addMovie(
                     Movie(
-                        randomString(), Coordinates(12f, 13.0), 12,
+                        "randomString()", Coordinates(12f, 13.0), 12,
                         11,
                         MovieGenre.ACTION,
                         MpaaRating.R,
-                        Person(randomString(), 14, Color.BLACK, Country.CHINA)
+                        Person("randomString()", 14, Color.BLACK, Country.CHINA)
                     )
                 )
             } catch (e: Exception) {
-                assertEquals(e.javaClass, SetOverflowException().javaClass)
+                assertEquals(e.javaClass, SetOverflowException("").javaClass)
                 break
             }
         }

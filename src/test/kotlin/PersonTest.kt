@@ -9,7 +9,7 @@ class PersonTest {
     fun personCreationTest() {
         for (i in 1..1000000) {
             try {
-                Person(randomString(), Random.nextInt(), Color.BLACK, Country.CHINA)
+                Person("randomString()", Random.nextInt(), Color.BLACK, Country.CHINA)
             } catch (e: Exception) {
                 Assertions.assertEquals(e.javaClass.`package`, MaxValueException("dsadsa").javaClass.`package`)
             }

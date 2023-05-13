@@ -10,7 +10,7 @@ class ConsoleTest {
         val printStream = PrintStream(output)
         System.setOut(printStream)
         for (i in 0..10000) {
-            ConsoleManager.consolePrint(randomString())
+            ConsoleManager.consolePrint("randomString()")
         }
     }
 }
